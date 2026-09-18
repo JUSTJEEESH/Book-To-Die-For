@@ -35,3 +35,10 @@ Owner's condition, recorded verbatim in spirit: proceed only if the book can hon
 number one bestseller. Assessment given: number one in a defined sub-category during a launch
 window is realistic with a funded, timed launch; number one in the main category is a longer
 campaign. Owner accepted and instructed to proceed.
+
+## Stage 3 onward — 2026-09-18
+
+Owner delegated all remaining editorial and product decisions: "Just make the best decisions to
+make it a number one seller." Every decision from Stage 4 on is logged in the stage document that
+made it, and remains reversible on the owner's instruction. Stage 3 recommendations (keep 8-05 and
+8-20, keep 3-10, keep Part Twelve's humor) adopted.
