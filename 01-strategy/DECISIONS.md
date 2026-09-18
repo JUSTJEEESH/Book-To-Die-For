@@ -42,3 +42,18 @@ Owner delegated all remaining editorial and product decisions: "Just make the be
 make it a number one seller." Every decision from Stage 4 on is logged in the stage document that
 made it, and remains reversible on the owner's instruction. Stage 3 recommendations (keep 8-05 and
 8-20, keep 3-10, keep Part Twelve's humor) adopted.
+
+## Stages 4–10 decisions — 2026-09-18 (owner delegated)
+
+| Decision | Made as | Where |
+|---|---|---|
+| Final prompt set | 202 prompts; 19 marked; 13 spreads; Part Eight 11 full pages, Part Eleven 9 | `03-prompts/STAGE-4-cuts-and-final-set.md` |
+| Letters | Three "To my child," partner, grandchildren, family, those who come after, one last letter (4 pp) | `04-manuscript/MANUSCRIPT.md` |
+| Page count | 250 (built), within the 240–256 target | `05-interior/STAGE-7-interior-spec.md` |
+| Typefaces | EB Garamond, Cormorant Garamond, Inter (all OFL) | `05-interior/fonts/` |
+| Cover | Direction B, deep ink with cream type and faint writing rules | `06-cover/STAGE-8-cover-concepts.md` |
+| Back cover | Final copy, 178 words, ends on the emotional promise | `06-cover/STAGE-9-back-cover.md` |
+| Price | Paperback $19.99 (launch $17.99 for 14 days); hardcover $28.99 | `07-amazon/STAGE-10-amazon-listing-and-launch.md` |
+| Extensions | None until the flagship has 100 reviews | same |
+
+Still open, owner's action: buy ISBNs; confirm the imprint name on the copyright page; order a printed proof.

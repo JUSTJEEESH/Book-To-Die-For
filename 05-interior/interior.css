@@ -124,6 +124,6 @@ ol.ten li::before { content: counter(ten); font-variant-numeric: oldstyle-nums; 
 .toc-fm .toc-title { font-style: italic; margin-left: 1.15in; }
 .toc-title { flex: 1 1 auto; }
 .toc-num { flex: 0 0 auto; font-variant-numeric: oldstyle-nums; color: #333; }
-.reader { height: 100%; display: flex; flex-direction: column; justify-content: center; text-align: center; padding: 0 0.3in 1in 0.3in; }
-.reader-head { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 22pt; margin: 0 0 14pt 0; }
+.reader { height: 100%; display: flex; flex-direction: column; justify-content: center; text-align: center; padding: 0 0.15in 1in 0.15in; }
+.reader p.reader-head { font-family: 'Cormorant Garamond', serif; font-style: normal; font-weight: 600; font-size: 24pt; margin: 0 0 14pt 0; }
 .reader p { font-size: 14pt; line-height: 1.55; margin: 0; font-style: italic; }

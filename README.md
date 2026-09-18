@@ -29,9 +29,9 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 | 5 | Manuscript, section by section | Complete |
 | 6 | Editorial quality control | Complete |
 | 7 | KDP interior specification | Complete (PDF built) |
-| 8 | Cover concepts | Not started |
-| 9 | Back cover | Not started |
-| 10 | Amazon listing and launch strategy | Not started |
+| 8 | Cover concepts | Complete (wrap built) |
+| 9 | Back cover | Complete |
+| 10 | Amazon listing and launch strategy | Complete |
 
 ## Working rules
 
