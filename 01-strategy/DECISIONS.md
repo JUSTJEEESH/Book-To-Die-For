@@ -24,3 +24,14 @@ Approved decisions are binding for every later stage. Date format is YYYY-MM-DD.
 
 - **Imprint name** (appears as publisher on the copyright page and spine). Proposal: use the series name, *Words to Keep*, as the imprint. Needed before Stage 7.
 - **ISBN purchase** (Bowker, US). Needed before Stage 7 so the copyright page can carry it.
+
+## Stage 2 approvals — 2026-09-18
+
+All six Stage 2 decisions approved as recommended: the thirteen section introductions, letters
+addressed by the writer, the "one book, every relationship" plan, the 248-page budget, the closing
+page kept as a draft until after Stage 5, and *Words to Keep* as the imprint name.
+
+Owner's condition, recorded verbatim in spirit: proceed only if the book can honestly become a
+number one bestseller. Assessment given: number one in a defined sub-category during a launch
+window is realistic with a funded, timed launch; number one in the main category is a longer
+campaign. Owner accepted and instructed to proceed.
