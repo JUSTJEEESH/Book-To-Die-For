@@ -22,8 +22,8 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 
 | Stage | Deliverable | Status |
 |---|---|---|
-| 1 | Product strategy | Drafted, awaiting approval |
-| 2 | Table of contents and emotional arc | Not started |
+| 1 | Product strategy | Approved 2026-09-18 |
+| 2 | Table of contents and emotional arc | Drafted, awaiting approval |
 | 3 | Master prompt inventory | Not started |
 | 4 | Prompt cuts (repetition, weakness) | Not started |
 | 5 | Manuscript, section by section | Not started |
