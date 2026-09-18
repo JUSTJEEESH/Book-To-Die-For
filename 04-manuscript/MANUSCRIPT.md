@@ -57,7 +57,7 @@ Any order. Any pace. Any pen. A fine ballpoint or fine-tip pen shows through lea
 
 One question to a page. The important ones get two.
 
-A small mark beside a question means: nobody usually asks this one.
+A small mark beside a question means: this one doesn't usually get asked.
 
 Each part ends with a page of quick ones, and a page with a question from your family. That question was written by the person who gave you this book, before they wrapped it.
 
@@ -70,7 +70,7 @@ You decide who reads this, and when.
 @@ page ten
 If you only fill out ten pages
 
-Nobody finishes every page of a book like this. If you only do ten, do these.
+Few people finish every page of a book like this. If you only do ten, do these.
 
 - Tell me about your mother, not as a mother.
 - The story your family tells at every gathering. Now the version that actually happened.
@@ -199,7 +199,7 @@ Who was the adult who saw something in you?
 
 @@ prompt
 The first time you fell in love.
-> Not the story you tell. What it actually felt like at the time.
+> Not the story you tell. What it felt like at the time.
 
 @@ prompt *
 What did you get in trouble for?
@@ -278,7 +278,7 @@ Tell me about a fight you still remember.
 > What was it really about?
 
 @@ prompt
-What is a long relationship actually made of?
+What is a long relationship made of?
 > Not the advice. The specifics.
 
 @@ spread
@@ -382,7 +382,7 @@ Tell me about finding out.
 > Where you were, and the first thing you felt, before the thing you were supposed to feel.
 
 @@ prompt
-Do you remember what you actually thought the first time you held your child, or met them?
+Do you remember what went through your head the first time you held your child, or met them?
 
 @@ prompt
 What did you get completely wrong about being a parent?
@@ -418,7 +418,7 @@ What's the thing your child said that you've never forgotten?
 - What you called them that wasn't their name.
 - The toy that went everywhere.
 - The song you sang, whether or not you could sing.
-- The age you liked best. Be honest.
+- The age you secretly liked best.
 
 @@ family
 
@@ -466,7 +466,7 @@ What got you through?
 
 @@ prompt
 The thing you've never been able to talk about, if you want to put it here.
-> This page can stay blank. It can also be the reason you were given this book.
+> This page can stay blank. It can also be the reason this book exists.
 
 @@ quick Quick ones
 - The song that got you through.
@@ -555,7 +555,7 @@ What were you completely wrong about, for a long time?
 Tell me about something you were sure would matter, and didn't.
 
 @@ prompt
-What is getting older actually like?
+What has getting older been like?
 
 @@ spread
 The rule you live by that you've never said out loud.
@@ -583,7 +583,7 @@ What do you believe happens to a person after they're gone?
 @@ opener PART NINE | What I'm Proud Of
 Most people are bad at this one. They reach for the obvious thing, then feel awkward and stop.
 
-Go past the obvious thing. The pride that counts is usually quieter: something you didn't do, someone you stood by, a day you didn't quit. Nobody is going to accuse you of bragging. This is your book.
+Go past the obvious thing. The pride that counts is usually quieter: something you didn't do, someone you stood by, a day you didn't quit. There's no one here to accuse you of bragging. This is your book.
 
 @@ prompt
 Tell me about a day you didn't quit.
@@ -697,11 +697,11 @@ What I want you to know about me that has nothing to do with being your parent, 
 What I hope you remember about this family.
 
 @@ special family-sayings
-What we always said. What it actually meant.
+What we always said. What it meant.
 
 @@ prompt
 What to do when life gets hard.
-> Not advice. What actually worked for me.
+> Not advice. What worked for me.
 
 @@ prompt
 What I want you to stop worrying about.

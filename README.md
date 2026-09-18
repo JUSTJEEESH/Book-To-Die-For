@@ -26,8 +26,8 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 | 2 | Table of contents and emotional arc | Approved 2026-09-18 |
 | 3 | Master prompt inventory | Approved 2026-09-18 (owner delegated) |
 | 4 | Prompt cuts (repetition, weakness) | Complete |
-| 5 | Manuscript, section by section | Complete (draft for QC) |
-| 6 | Editorial quality control | Not started |
+| 5 | Manuscript, section by section | Complete |
+| 6 | Editorial quality control | Complete |
 | 7 | KDP interior specification | Not started |
 | 8 | Cover concepts | Not started |
 | 9 | Back cover | Not started |
