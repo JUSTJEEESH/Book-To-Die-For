@@ -4,7 +4,14 @@
   python3 06-cover/build_cover.py            -> concepts A/B/C front covers (PNG) + full paperback wrap PDF for the chosen direction
 Paperback wrap: 7 x 10 trim, 250 pp cream (spine 0.625 in), 0.125 in bleed -> 14.875 x 10.25 in.
 """
-import os, subprocess, shutil, html
+import os, subprocess, shutil, html, argparse
+ap = argparse.ArgumentParser()
+ap.add_argument('--spine', type=float, default=0.625, help='spine width in inches (KDP calculator)')
+ap.add_argument('--bleed', type=float, default=0.125, help='bleed per side in inches (0.125 paperback)')
+ap.add_argument('--wrap', type=float, default=0.0, help='hardcover wrap-around per side in inches (KDP template), 0 for paperback')
+ap.add_argument('--name', default='paperback-wrap', help='output file name')
+ap.add_argument('--no-concepts', action='store_true')
+args = ap.parse_args()
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, '06-cover', 'build')
 CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
@@ -71,12 +78,14 @@ def render_png(name, body, w_in=7, h_in=10):
     os.remove(p); print(png)
 
 # ---- concepts ----
-render_png('concept-A-bone', concept_a())
-render_png('concept-B-ink', concept_b())
-render_png('concept-C-rules', concept_c())
+if not args.no_concepts:
+    render_png('concept-A-bone', concept_a())
+    render_png('concept-B-ink', concept_b())
+    render_png('concept-C-rules', concept_c())
 
-# ---- full paperback wrap for concept B ----
-SPINE = 0.625; BLEED = 0.125; W = 7 + SPINE + 7 + 2*BLEED; H = 10 + 2*BLEED
+# ---- full wrap for concept B (paperback by default; hardcover with --wrap and KDP's spine) ----
+SPINE = args.spine; BLEED = args.bleed + args.wrap; W = 7 + SPINE + 7 + 2*BLEED; H = 10 + 2*BLEED
+print(f'wrap: {W:.3f} x {H:.3f} in, spine {SPINE} in, edge allowance {BLEED} in per side')
 back_ps = ''.join(f'<p class="bp{" lead" if i==0 else ""}{" last" if i==len(BACK)-1 else ""}">{html.escape(t)}</p>' for i, t in enumerate(BACK))
 wrap = f"""<!doctype html><html><head><meta charset="utf-8"><style>{BASE_CSS}
 @page{{size:{W}in {H}in;margin:0}}
@@ -101,7 +110,7 @@ wrap = f"""<!doctype html><html><head><meta charset="utf-8"><style>{BASE_CSS}
   <div class="spine"><div class="spine-text"><p class="t">{TITLE}</p><p class="au">{AUTHOR}</p></div><div class="spine-imp"><p class="imp">WTK</p></div></div>
   <div class="frontpos">{concept_b()}</div>
 </div></body></html>"""
-p = os.path.join(OUT, 'paperback-wrap.html'); open(p, 'w').write(wrap)
-pdf = os.path.join(OUT, 'paperback-wrap.pdf')
+p = os.path.join(OUT, args.name + '.html'); open(p, 'w').write(wrap)
+pdf = os.path.join(OUT, args.name + '.pdf')
 subprocess.run([CHROME, '--headless', '--no-sandbox', '--disable-gpu', '--no-pdf-header-footer', f'--print-to-pdf={pdf}', 'file://' + p], capture_output=True)
 print(pdf)
