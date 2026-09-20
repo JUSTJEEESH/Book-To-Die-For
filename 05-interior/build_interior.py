@@ -374,6 +374,24 @@ def changelog_page(heading):
     b += '</div>'
     return Page(b, 'special-page')
 
+def wordentry_page():
+    def entry():
+        return ('<div class="wentry">'
+                '<div class="two-col"><div class="pl" style="flex:1 1 0"><span class="pl-label">The word</span><div class="slot-line big"></div></div>'
+                '<div class="pl" style="flex:1 1 0"><span class="pl-label">How to say it</span><div class="slot-line big"></div></div></div>'
+                '<div class="pl"><span class="pl-label">What it means</span><div class="slot-line"></div></div>'
+                '<div class="pl"><span class="pl-label">When we said it, and who said it best</span><div class="slot-line"></div><div class="slot-line"></div></div>'
+                '<div class="pl"><span class="pl-label">How it sounds to me (for the one learning it)</span><div class="slot-line"></div></div>'
+                '</div>')
+    return Page('<div class="wentries">' + entry() + entry() + '</div>', 'special-page word-page')
+
+def song_page(heading, sub):
+    b = (f'<div class="prompt-head"><h2 class="prompt">{esc(heading)}</h2>' + (f'<p class="sub">{esc(sub)}</p>' if sub else '') + '</div>'
+         '<div class="two-col" style="margin-top:3mm"><div class="pl"><span class="pl-label">Title, or the first line</span><div class="slot-line"></div></div>'
+         '<div class="pl"><span class="pl-label">Who sang it, and when</span><div class="slot-line"></div></div></div>'
+         '<p class="pl-label" style="margin:4mm 0 0 0">The words, as we sang them</p>' + lines_block())
+    return Page(b, 'prompt-page')
+
 def letter_pages(heading, n):
     out = []
     first = (f'<div class="prompt-head letter-head"><h2 class="prompt">{esc(heading)}</h2>'
@@ -495,12 +513,12 @@ for it in items:
         pg = add(quick_page(a, [l[2:].strip() for l in ls if l.startswith('- ')], finish=(k=='finish')))
         index_entries.append((part_title, a, pg.num))
     elif k == 'family':
-        pg = add(family_page()); index_entries.append((part_title, 'A question from your family', pg.num))
+        pg = add(family_page()); index_entries.append((part_title, _L['family_h'].rstrip('.'), pg.num))
     elif k == 'photo':
         add(photo_page())
     elif k == 'special':
         instr = ' '.join(paras(ls))
-        names = {'family-tree':'Family tree','important-people':'The important people','family-sayings':'Family sayings','decades':'My life, a line at a time','songs':'The songs','recipe':'The recipe','places':'Where the stories happened','startend':'How we started, how we ended'}
+        names = {'family-tree':_L['tree'],'important-people':_L['people'],'family-sayings':_L['sayings'],'decades':_L['decades'],'songs':_L['songs'],'recipe':_L['recipe'],'places':'Where the stories happened','startend':'How we started, how we ended'}
         start = len(pages) + 1
         if a == 'family-tree':
             ensure_verso(); start = len(pages) + 1; [add(p) for p in family_tree_pages(instr)]
@@ -552,6 +570,13 @@ for it in items:
         flows.append((start, n, fpdf))
         contents.append((part_label, title, start))
         index_entries.append((title, title, start))
+    elif k == 'wordentry':
+        add(wordentry_page())
+    elif k == 'song':
+        sub = None
+        for l in ls:
+            if l.startswith('>'): sub = l[1:].strip()
+        pg = add(song_page(a, sub)); prompt_index[a] = pg.num; index_entries.append((part_title, a, pg.num))
     elif k == 'cast':
         add(cast_page())
     elif k == 'story':
@@ -661,6 +686,8 @@ if (_args.trim_w, _args.trim_h) != (7.0, 10.0):
     CSS += f"\n@page {{ size: {_args.trim_w}in {_args.trim_h}in; }} .page {{ width: {_args.trim_w}in; height: {_args.trim_h}in; }}\n"
 if _args.extra_css:
     CSS += '\n' + open(_args.extra_css, encoding='utf-8').read()
+if _args.lang == 'es':
+    CSS += '\n.toc-label { width: 1.55in; } .toc-fm .toc-title { margin-left: 1.55in; }\n'
 CSS += '''
 .fields { display: flex; flex-direction: column; flex: 1 1 auto; }
 .fields .field { margin-bottom: 3.5mm; }
@@ -673,6 +700,11 @@ CSS += '''
 .gridcell .pl { margin-top: 2mm; }
 .changelog .logrow { display: flex; gap: 6mm; margin-bottom: 4mm; }
 .life-body { display: flex; flex-direction: column; flex: 1 1 auto; }
+.wentries { display: flex; flex-direction: column; justify-content: space-between; flex: 1 1 auto; }
+.wentry { padding: 2mm 0 6mm 0; border-bottom: 0.5pt solid #ddd; }
+.wentry:last-child { border-bottom: none; }
+.wentry .pl { margin-bottom: 2mm; }
+.wentry .pl .slot-line { height: 8mm; }
 .life-body .lines { flex: 1 1 auto; }
 '''
 FONTS = open(os.path.join(ROOT, '05-interior', 'fonts', 'fonts.css'), encoding='utf-8').read()

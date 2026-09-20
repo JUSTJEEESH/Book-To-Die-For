@@ -7,7 +7,7 @@ Built in this order. Each folder holds its brief, manuscript, listing, back cove
 | 1 | The Stories I Made Up | `01-stories-i-made-up/` | Interior built (116 pp), placeholder wrap built, listing written. Awaiting cover art. | Live by Oct 20, 2026 |
 | 2 | Still Me | `02-still-me/` | Interior built (100 pp, 8.5 x 11, with a 3,800-word guide), placeholder wrap built, listing written. Awaiting cover art. | Live by Jan 2027 |
 | 3 | Lo Que Quiero Que Sepas | `03-lo-que-quiero-que-sepas/` | Interior built (256 pp, Spanish labels throughout), wrap built (same cover as the flagship), listing written. **Needs the native editor's pass before publishing.** | Live by Mar 1, 2027 |
-| 4 | The Words We Brought With Us | `04-words-we-brought-with-us/` | Not started | Live by mid-Apr 2027 |
+| 4 | The Words We Brought With Us | `04-words-we-brought-with-us/` | Interior built (104 pp), placeholder wrap built, listing written. Awaiting cover art. | Live by mid-Apr 2027 |
 
 Cover prompts and KDP dimensions for all four: `COVER-PROMPTS-AND-DIMENSIONS.md`.
 
@@ -37,4 +37,10 @@ Chromium with running feet and continuous page numbers, spliced into the interio
 # Lo Que Quiero Que Sepas (Spanish labels via --lang es)
 python3 05-interior/build_interior.py --lang es --manuscript 09-portfolio/03-lo-que-quiero-que-sepas/MANUSCRIPT.md --out 09-portfolio/03-lo-que-quiero-que-sepas/build
 python3 06-cover/build_cover.py --no-concepts --title "Lo Que Quiero<br>Que Sepas" --tag "Mis historias. Mis recuerdos. Mis palabras." --back 09-portfolio/03-lo-que-quiero-que-sepas/back-cover-copy.txt --ink "#1e2838" --spine 0.64 --name paperback-wrap --out-dir 09-portfolio/03-lo-que-quiero-que-sepas/build
+```
+
+```
+# The Words We Brought With Us
+python3 05-interior/build_interior.py --manuscript 09-portfolio/04-words-we-brought-with-us/MANUSCRIPT.md --out 09-portfolio/04-words-we-brought-with-us/build
+python3 06-cover/build_cover.py --no-concepts --title "The Words<br>We Brought<br>With Us" --tag "The words, the sayings, and the songs we still say." --back 09-portfolio/04-words-we-brought-with-us/back-cover-copy.txt --ink "#1f3a2f" --spine 0.26 --name paperback-wrap --out-dir 09-portfolio/04-words-we-brought-with-us/build
 ```
