@@ -76,11 +76,13 @@ h2.quick-head, h2.sp-head { font-family: 'Cormorant Garamond', serif; font-weigh
 .pl { margin-bottom: 2.5mm; }
 .pl .pl-label { display: block; margin-bottom: 0; }
 .pl .slot-line { height: 7.5mm; }
-.people .person { margin-bottom: 4.5mm; }
-.people .pl { margin-bottom: 1.5mm; }
+.people .person { margin-bottom: 4mm; }
+.people .pl { margin-bottom: 1mm; }
+.people .pl .slot-line { height: 7mm; }
 .people.top { padding-top: 0; }
-.sayings .saying { margin-bottom: 4.5mm; }
-.sayings .pl { margin-bottom: 1.5mm; }
+.sayings .saying { margin-bottom: 3.2mm; }
+.sayings .pl { margin-bottom: 1mm; }
+.sayings .pl .slot-line { height: 7mm; }
 .two-col { display: flex; gap: 8mm; }
 .two-col .pl { flex: 1 1 0; }
 .letter-head .pl.to { width: 62%; margin-top: 4mm; }
@@ -133,8 +135,8 @@ ol.ten li::before { content: counter(ten); font-variant-numeric: oldstyle-nums; 
 ol.giver { padding: 0 0 0 1.3em; margin: 6pt 0 0 0; }
 ol.giver li { margin: 0 0 10pt 0; font-size: 12.5pt; line-height: 1.5; padding-left: 4pt; }
 ol.giver li::marker { color: #777; font-variant-numeric: oldstyle-nums; }
-.decades .pl { margin-bottom: 3.2mm; }
-.decades .pl .slot-line { height: 7.2mm; }
+.decades .pl { margin-bottom: 3.5mm; }
+.decades .pl .slot-line { height: 8.5mm; }
 .index-cols { display: flex; gap: 0.3in; margin-top: 4pt; }
 .index-col { flex: 1 1 0; min-width: 0; }
 .idx-head { font-family: 'Inter', sans-serif; font-size: 7pt; letter-spacing: 0.14em; text-transform: uppercase; color: #777; margin: 7pt 0 3pt 0; }

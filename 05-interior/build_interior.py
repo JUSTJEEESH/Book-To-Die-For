@@ -143,16 +143,15 @@ def important_people_pages(instr):
         for _ in range(n):
             s += ('<div class="person"><div class="pl"><span class="pl-label">Name</span><div class="slot-line"></div></div>'
                   '<div class="pl"><span class="pl-label">Who they were to me</span><div class="slot-line"></div></div>'
-                  '<div class="pl"><span class="pl-label">One line I\'d want you to know</span><div class="slot-line"></div></div>'
-                  '<div class="pl"><span class="pl-label"></span><div class="slot-line"></div></div></div>')
+                  '<div class="pl"><span class="pl-label">One line I\'d want you to know</span><div class="slot-line"></div></div></div>')
         return s
-    v = '<h2 class="sp-head">The important people</h2><p class="sp-instr">' + esc(instr) + '</p><div class="people">' + rows(5) + '</div>'
-    r = '<div class="people top">' + rows(6) + '</div>'
+    v = '<h2 class="sp-head">The important people</h2><p class="sp-instr">' + esc(instr) + '</p><div class="people">' + rows(4) + '</div>'
+    r = '<div class="people top">' + rows(5) + '</div>'
     return [Page(v, 'special-page'), Page(r, 'special-page')]
 
 def sayings_page(instr):
     b = '<h2 class="sp-head">Family sayings</h2><p class="sp-instr">' + esc(instr) + '</p><div class="sayings">'
-    for _ in range(8):
+    for _ in range(7):
         b += ('<div class="saying"><div class="pl"><span class="pl-label">We always said</span><div class="slot-line"></div></div>'
               '<div class="pl"><span class="pl-label">What it meant</span><div class="slot-line"></div></div></div>')
     b += '</div>'
@@ -160,7 +159,7 @@ def sayings_page(instr):
 
 def songs_page(instr):
     b = '<h2 class="sp-head">The songs</h2><p class="sp-instr">' + esc(instr) + '</p><div class="sayings">'
-    for _ in range(8):
+    for _ in range(7):
         b += ('<div class="saying"><div class="pl"><span class="pl-label">Title, and who sang it</span><div class="slot-line"></div></div>'
               '<div class="pl"><span class="pl-label">Why</span><div class="slot-line"></div></div></div>')
     b += '</div>'
@@ -179,7 +178,7 @@ def decades_page(instr):
     rows = ['Before I was ten', 'My teens', 'My twenties', 'My thirties', 'My forties', 'My fifties', 'My sixties', 'My seventies', 'After that', 'Now']
     b = '<h2 class="sp-head">My life, a line at a time</h2><p class="sp-instr">' + esc(instr) + '</p><div class="decades">'
     for r in rows:
-        b += f'<div class="pl"><span class="pl-label">{esc(r)}</span><div class="slot-line"></div><div class="slot-line"></div></div>'
+        b += f'<div class="pl"><span class="pl-label">{esc(r)}</span><div class="slot-line"></div></div>'
     b += '</div>'
     return Page(b, 'special-page decades-page')
 
@@ -353,7 +352,7 @@ def index_pages():
         if part != cur:
             lines.append(('head', part, None)); cur = part
         lines.append(('item', text, num))
-    PER_PAGE = 92   # two columns of 46 lines
+    PER_PAGE = 88   # two columns of 44 lines
     chunks = [lines[i:i+PER_PAGE] for i in range(0, len(lines), PER_PAGE)]
     out = []
     for ci, chunk in enumerate(chunks):
@@ -409,6 +408,26 @@ open(html_path, 'w', encoding='utf-8').write(doc)
 # fonts are referenced relative to the html; copy the folder next to it
 if os.path.isdir(os.path.join(OUT, 'fonts')): shutil.rmtree(os.path.join(OUT, 'fonts'))
 shutil.copytree(os.path.join(ROOT, '05-interior', 'fonts'), os.path.join(OUT, 'fonts'))
+
+# ---------- overflow check (fails the build if anything spills past the page margins) ----------
+check_html = doc.replace('</body>', '''<script>
+const out=[];document.querySelectorAll('section.page').forEach(s=>{const c=s.querySelector('.content');
+const pr=s.getBoundingClientRect();const limit=pr.bottom-parseFloat(getComputedStyle(s).paddingBottom);
+let worst=0;s.querySelectorAll('.content *').forEach(e=>{const r=e.getBoundingClientRect();if(r.height>0&&r.bottom>limit+0.5)worst=Math.max(worst,r.bottom-limit);});
+if(c&&c.scrollHeight>c.clientHeight+1)worst=Math.max(worst,c.scrollHeight-c.clientHeight);
+if(worst>0)out.push(s.dataset.page+':'+worst.toFixed(1));});
+const pre=document.createElement('pre');pre.id='overflow-report';pre.textContent=out.join(' ')||'OK';document.body.appendChild(pre);
+</script></body>''')
+check_path = os.path.join(OUT, '_check.html')
+open(check_path, 'w', encoding='utf-8').write(check_html)
+r = subprocess.run([CHROME, '--headless', '--no-sandbox', '--disable-gpu', '--window-size=672,960', '--dump-dom', 'file://' + check_path], capture_output=True, text=True)
+os.remove(check_path)
+m = re.search(r'<pre id="overflow-report">(.*?)</pre>', r.stdout, flags=re.S)
+report = m.group(1).strip() if m else 'no report'
+if report != 'OK':
+    print('OVERFLOW (page:px past margin):', report)
+    sys.exit(1)
+print('overflow check: OK')
 
 print(f'pages: {len(pages)}')
 for label, title, num in contents:
