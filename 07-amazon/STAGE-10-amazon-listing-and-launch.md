@@ -106,10 +106,10 @@ for a mother, father, grandmother, or grandfather without a separate edition.
 
 | Format | List | Print cost | Royalty (60%) |
 |---|---|---|---|
-| Paperback, 254 pp | $19.99 | $4.05 | $7.94 |
-| Hardcover, 254 pp | $28.99 | ~$8.55 | ~$8.84 |
+| Paperback, 254 pp | $19.99 | $5.32 (KDP quoted) | $6.67 |
+| Hardcover, 254 pp | $28.99 | KDP will quote at setup (expect roughly $9–10) | roughly $7.50 |
 
-Launch price for the paperback: $17.99 for the first 14 days, then $19.99. A launch price gives early
+Launch price for the paperback: $17.99 for the first 14 days (royalty $5.47), then $19.99 (royalty $6.67). Expanded Distribution at $19.99 nets $2.68. Note: 7 x 10 is a large-trim size on KDP and prints at about $1.00 plus $0.017 per page, not the $0.012 standard-trim rate. A launch price gives early
 reviewers a reason to buy now and lets the listing show a strike-through later.
 
 ## 10. A+ Content (KDP allows up to seven modules)

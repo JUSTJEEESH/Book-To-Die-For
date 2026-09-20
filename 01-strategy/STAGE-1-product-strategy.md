@@ -197,22 +197,22 @@ Decision needed (Section 10).
 | Type | Serif for prompts, set large (12–13 pt body, prompts larger) | Nothing under 10 pt anywhere. |
 | ISBN | Buy your own ISBN | Required if you ever want the book outside Amazon, and it lets the imprint name appear as publisher. |
 
-### Cost and price (2026 KDP US formula: $1.00 + $0.012 per page for B&W)
+### Cost and price (corrected at KDP setup: 7 x 10 is a large-trim size, about $1.00 + $0.017 per page for B&W)
 
 | Pages | Print cost | List $17.99 (60%) | List $19.99 (60%) | List $21.99 (60%) |
 |---|---|---|---|---|
-| 240 | $3.88 | $6.91 royalty | $8.11 | $9.31 |
-| 256 | $4.07 | $6.72 | $7.92 | $9.12 |
+| 240 | $5.08 | $5.71 royalty | $6.91 | $8.11 |
+| 254 (as built) | $5.32 | $5.47 | $6.67 | $7.87 |
 
-Expanded distribution pays 40% and would net roughly $3.00–$4.00 at these prices. Ads need margin.
+Expanded distribution pays 40% and would net roughly $2.70–$3.50 at these prices. Ads need margin.
 Recommend launching at **$19.99**, which sits above the category leader's paperback ($14.99) and at
 his hardcover ($19.95). The book must look worth $5 more than his on the thumbnail. That is the
 cover's job.
 
 ### Second format: KDP hardcover, 7 x 10
 
-KDP supports 7 x 10 hardcover (case laminate, no dust jacket). Print cost is roughly $5.50 + $0.012/page;
-at 240 pages about $8.40. List at $27.99–29.99. Recommend launching the hardcover at the same time
+KDP supports 7 x 10 hardcover (case laminate, no dust jacket). Print cost is quoted by KDP at setup; expect roughly $9–10 for 254 pages at this trim;
+list at $27.99–29.99. Recommend launching the hardcover at the same time
 or within 30 days: gift buyers in this category trade up, and a hardcover option makes the paperback
 look like the value choice. Both formats share one interior file.
 

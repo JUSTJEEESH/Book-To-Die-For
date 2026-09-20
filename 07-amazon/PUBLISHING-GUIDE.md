@@ -136,7 +136,7 @@ Save and continue.
 If the previewer flags anything, note the exact message and send it back here.
 
 Approve the preview. KDP reports the printing cost on the next page. At 254 pages it should be about
-$4.05 for US orders.
+$5.32 for US orders (7 x 10 is a large-trim size, priced at about $1.00 plus $0.017 per page).
 
 ## Step 7. Order a printed proof before publishing (one week of waiting)
 
@@ -161,9 +161,9 @@ rebuild and a re-upload, and KDP lets you replace files before and after publish
 |---|---|
 | Territories | All territories (worldwide rights) |
 | Primary marketplace | Amazon.com |
-| Pricing | **$17.99** for launch. Change to $19.99 after fourteen days. The royalty shown should be about $6.79 at $17.99 and $7.99 at $19.99 |
+| Pricing | **$17.99** for launch. Change to $19.99 after fourteen days. The royalty shown should be about $5.47 at $17.99 and $6.67 at $19.99 |
 | Other marketplaces | Let KDP convert automatically |
-| Expanded Distribution | **Enable.** It lists the book with bookstore and library wholesalers at a 40% royalty. At $19.99 that still clears about $4.00 per copy |
+| Expanded Distribution | **Enable.** It lists the book with bookstore and library wholesalers at a 40% royalty. At $19.99 that clears about $2.68 per copy |
 | Release date | Confirm |
 
 Press **Publish**. KDP review takes up to 72 hours; usually less than 24. You receive an email when
