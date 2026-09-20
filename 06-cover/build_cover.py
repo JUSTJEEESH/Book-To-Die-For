@@ -19,6 +19,8 @@ ap.add_argument('--hc-spine', type=float, default=0.824); ap.add_argument('--hc-
 ap.add_argument('--title', default='What I Want You to Know'); ap.add_argument('--tag', default='My stories. My memories. My words.')
 ap.add_argument('--back', default=None, help='path to back cover copy text file'); ap.add_argument('--ink', default='#1e2838', help='ground color hex')
 ap.add_argument('--out-dir', default=None, help='output folder (default 06-cover/build)')
+ap.add_argument('--trim-w', type=float, default=7.0); ap.add_argument('--trim-h', type=float, default=10.0)
+ap.add_argument('--text', default='#efe7d6', help='type color hex (cream by default; use a dark hex on a light ground)')
 args = ap.parse_args()
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.abspath(args.out_dir) if args.out_dir else os.path.join(ROOT, '06-cover', 'build')
@@ -34,7 +36,8 @@ AUTHOR = 'Joshua Caleb Green'
 IMPRINT = 'Words to Keep'
 BACK = open(args.back or os.path.join(ROOT, '06-cover', 'back-cover-copy.txt')).read().strip().split('\n\n')
 
-INK = args.ink; CREAM = '#efe7d6'; BONE = '#f3efe6'; CHAR = '#1b1b1b'
+INK = args.ink; CREAM = args.text; BONE = '#f3efe6'; CHAR = '#1b1b1b'
+TW, TH = args.trim_w, args.trim_h
 
 BASE_CSS = FONTS + """
 html,body{margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -93,15 +96,15 @@ if not args.no_concepts:
     render_png('concept-C-rules', concept_c())
 
 # ---- full wrap for concept B (paperback by default; hardcover with --wrap and KDP's spine) ----
-SPINE = args.spine; BLEED = args.bleed + args.wrap; W = 7 + SPINE + 7 + 2*BLEED; H = 10 + 2*BLEED
+SPINE = args.spine; BLEED = args.bleed + args.wrap; W = TW + SPINE + TW + 2*BLEED; H = TH + 2*BLEED
 print(f'wrap: {W:.3f} x {H:.3f} in, spine {SPINE} in, edge allowance {BLEED} in per side')
 back_ps = ''.join(f'<p class="bp{" lead" if i==0 else ""}{" last" if i==len(BACK)-1 else ""}">{html.escape(t)}</p>' for i, t in enumerate(BACK))
 wrap = f"""<!doctype html><html><head><meta charset="utf-8"><style>{BASE_CSS}
 @page{{size:{W}in {H}in;margin:0}}
 .wrap{{position:relative;width:{W}in;height:{H}in;background:{INK};color:{CREAM};overflow:hidden}}
-.back{{position:absolute;left:{BLEED}in;top:{BLEED}in;width:7in;height:10in;padding:0.95in 0.85in 0.7in}}
-.spine{{position:absolute;left:{BLEED+7}in;top:{BLEED}in;width:{SPINE}in;height:10in}}
-.frontpos{{position:absolute;left:{BLEED+7+SPINE}in;top:{BLEED}in}}
+.back{{position:absolute;left:{BLEED}in;top:{BLEED}in;width:{TW}in;height:{TH}in;padding:0.95in 0.85in 0.7in}}
+.spine{{position:absolute;left:{BLEED+TW}in;top:{BLEED}in;width:{SPINE}in;height:{TH}in}}
+.frontpos{{position:absolute;left:{BLEED+TW+SPINE}in;top:{BLEED}in}}
 .bp{{font-family:'EB Garamond',serif;font-size:12.6pt;line-height:1.5;margin:0 0 11pt 0;opacity:0.95;max-width:5.1in}}
 .bp.lead{{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:25pt;line-height:1.15;margin-bottom:22pt;opacity:1;max-width:4.6in}}
 .bp.last{{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17pt;margin-top:20pt}}
@@ -117,7 +120,7 @@ wrap = f"""<!doctype html><html><head><meta charset="utf-8"><style>{BASE_CSS}
   <div class="back">{back_ps}<div class="backimp"><p class="imp" style="opacity:0.7">{IMPRINT}</p></div></div>
   <div class="barcode"></div>
   <div class="spine"><div class="spine-text"><p class="t">{TITLE}</p><p class="au">{AUTHOR}</p></div><div class="spine-imp"><p class="imp">WTK</p></div></div>
-  <div class="frontpos">{concept_b()}</div>
+  <div class="frontpos">{concept_b(w=TW, h=TH, pad_top=TH*0.175)}</div>
 </div></body></html>"""
 p = os.path.join(OUT, args.name + '.html'); open(p, 'w').write(wrap)
 pdf = os.path.join(OUT, args.name + '.pdf')

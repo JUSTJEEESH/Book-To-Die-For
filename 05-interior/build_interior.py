@@ -15,6 +15,8 @@ _ap = argparse.ArgumentParser()
 _ap.add_argument('--manuscript', default=os.path.join(ROOT, '04-manuscript', 'MANUSCRIPT.md'))
 _ap.add_argument('--out', default=os.path.join(ROOT, '05-interior', 'build'))
 _ap.add_argument('--html-only', action='store_true')
+_ap.add_argument('--trim-w', type=float, default=7.0); _ap.add_argument('--trim-h', type=float, default=10.0)
+_ap.add_argument('--extra-css', default=None)
 _args = _ap.parse_args()
 MS = os.path.abspath(_args.manuscript)
 OUT = os.path.abspath(_args.out)
@@ -67,6 +69,71 @@ ten_targets = []       # prompt texts for "ten pages" lookup
 prompt_index = {}      # prompt text -> page number
 index_entries = []     # (part_title, text, page)
 story_pages_list = []  # first page of each story spread
+
+flows = []   # (start_page, n_pages, pdf_path)
+
+def md_to_html(text):
+    out = []; para = []; inlist = False
+    def flush():
+        nonlocal para
+        if para: out.append('<p>' + esc(' '.join(para)) + '</p>'); para = []
+    for line in text.split('\n'):
+        l = line.rstrip()
+        if l.startswith('## '):
+            flush()
+            if inlist: out.append('</ul>'); inlist = False
+            out.append(f'<h2>{esc(l[3:])}</h2>')
+        elif l.startswith('### '):
+            flush(); out.append(f'<h3>{esc(l[4:])}</h3>')
+        elif l.startswith('- '):
+            flush()
+            if not inlist: out.append('<ul>'); inlist = True
+            out.append(f'<li>{esc(l[2:])}</li>')
+        elif not l.strip():
+            flush()
+            if inlist: out.append('</ul>'); inlist = False
+        else:
+            if inlist: out.append('</ul>'); inlist = False
+            para.append(l.strip())
+    flush()
+    if inlist: out.append('</ul>')
+    html_ = '\n'.join(out)
+    # bold **x**
+    html_ = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', html_)
+    return html_
+
+def render_flow(path, label, title, start):
+    W, H = _args.trim_w, _args.trim_h
+    body = md_to_html(open(path, encoding='utf-8').read())
+    fonts_css = open(os.path.join(ROOT, '05-interior', 'fonts', 'fonts.css'), encoding='utf-8').read().replace("url('fonts/", "url('" + os.path.join(ROOT, '05-interior', 'fonts') + "/")
+    css = f"""{fonts_css}
+@page {{ size: {W}in {H}in; margin: 0.75in 0.75in 0.875in 0.875in; counter-increment: page;
+  @bottom-left {{ content: counter(page) "   " "{title}"; font-family: 'EB Garamond', serif; font-size: 10pt; color: #333; font-variant-numeric: oldstyle-nums; vertical-align: top; padding-top: 0; margin-bottom: 0.42in; }} }}
+@page :right {{ margin: 0.75in 0.75in 0.875in 0.875in;
+  @bottom-left {{ content: none; }}
+  @bottom-right {{ content: "{title}" "   " counter(page); font-family: 'EB Garamond', serif; font-size: 10pt; color: #333; font-variant-numeric: oldstyle-nums; margin-bottom: 0.42in; }} }}
+@page :left {{ margin: 0.75in 0.875in 0.875in 0.75in; }}
+html {{ counter-reset: page {start - 1}; }}
+body {{ margin: 0; font-family: 'EB Garamond', serif; font-size: 12.5pt; line-height: 1.5; color: #111; -webkit-print-color-adjust: exact; }}
+.opener {{ padding-top: 1.35in; max-width: 5.2in; margin-bottom: 0.5in; }}
+.part-label {{ font-family: 'Inter', sans-serif; font-weight: 500; font-size: 9pt; letter-spacing: 0.24em; text-transform: uppercase; color: #444; margin: 0 0 14pt 0; }}
+h1 {{ font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 40pt; line-height: 1.05; margin: 0 0 18pt 0; }}
+h2 {{ font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 22pt; line-height: 1.15; margin: 22pt 0 8pt 0; break-after: avoid; }}
+h3 {{ font-family: 'EB Garamond', serif; font-weight: 600; font-size: 13pt; margin: 14pt 0 4pt 0; break-after: avoid; }}
+p {{ margin: 0 0 9pt 0; max-width: 5.6in; orphans: 2; widows: 2; }}
+ul {{ margin: 0 0 9pt 0; padding-left: 1.2em; max-width: 5.6in; }}
+li {{ margin: 0 0 4pt 0; }}
+strong {{ font-weight: 600; }}
+"""
+    doc_ = ('<!doctype html><html><head><meta charset="utf-8"><style>' + css + '</style></head><body>'
+            f'<div class="opener"><p class="part-label">{esc(label)}</p><h1>{esc(title)}</h1></div>' + body + '</body></html>')
+    hp = os.path.join(OUT, f'_flow_{start}.html'); os.makedirs(OUT, exist_ok=True)
+    open(hp, 'w', encoding='utf-8').write(doc_)
+    pdfp = os.path.join(OUT, f'_flow_{start}.pdf')
+    subprocess.run([CHROME, '--headless', '--no-sandbox', '--disable-gpu', '--no-pdf-header-footer', f'--print-to-pdf={pdfp}', 'file://' + hp], capture_output=True)
+    info = subprocess.run(['pdfinfo', pdfp], capture_output=True, text=True).stdout
+    n = int(re.search(r'Pages:\s+(\d+)', info).group(1))
+    return n, pdfp
 
 def add(page):
     page.num = len(pages) + 1
@@ -232,6 +299,56 @@ def longstory_pages(heading, sub, n):
         out.append(Page(body, 'prompt-page cont'))
     return out
 
+def lifepage(text, sub):
+    b = '<div class="prompt-head">' + f'<h2 class="prompt">{esc(text)}</h2>' + (f'<p class="sub">{esc(sub)}</p>' if sub else '') + '</div>'
+    b += '<div class="life-body"><div class="lines" style="margin-top:4mm"></div>' + drawbox('A photograph, if there is one', 'height: 58mm; margin-top: 5mm') + '</div>'
+    return Page(b, 'prompt-page life-page')
+
+def fields_page(heading, sub, items):
+    b = f'<h2 class="sp-head">{esc(heading)}</h2>' + (f'<p class="sp-instr">{esc(sub)}</p>' if sub else '') + '<div class="fields">'
+    for i, (label, n) in enumerate(items):
+        grow = ' grow' if i == len(items) - 1 else ''
+        b += f'<div class="field{grow}"><span class="pl-label">{esc(label)}</span><div class="qlines" style="height:{10*n}mm;min-height:{10*n}mm"></div></div>'
+    b += '</div>'
+    return Page(b, 'special-page fields-page')
+
+def names_page(heading, sub):
+    b = f'<h2 class="sp-head">{esc(heading)}</h2>' + (f'<p class="sp-instr">{esc(sub)}</p>' if sub else '') + '<div class="fields">'
+    for _ in range(3):
+        b += ('<div class="namegroup">'
+              '<div class="two-col"><div class="pl"><span class="pl-label">Name</span><div class="slot-line"></div></div>'
+              '<div class="pl"><span class="pl-label">Who they are to me</span><div class="slot-line"></div></div></div>'
+              '<div class="pl"><span class="pl-label">Living, or not, and where</span><div class="slot-line"></div></div>'
+              '<div class="field"><span class="pl-label">What we have agreed to say</span><div class="qlines" style="height:20mm"></div></div>'
+              '</div>')
+    b += '</div>'
+    return Page(b, 'special-page fields-page')
+
+def words_page(heading, sub):
+    b = f'<h2 class="sp-head">{esc(heading)}</h2>' + (f'<p class="sp-instr">{esc(sub)}</p>' if sub else '') + '<div class="sayings">'
+    for _ in range(8):
+        b += ('<div class="saying"><div class="two-col"><div class="pl"><span class="pl-label">The word</span><div class="slot-line"></div></div>'
+              '<div class="pl" style="flex:2 1 0"><span class="pl-label">What it means</span><div class="slot-line"></div></div></div></div>')
+    b += '</div>'
+    return Page(b, 'special-page')
+
+def photogrid_page(heading):
+    b = f'<h2 class="sp-head">{esc(heading)}</h2><div class="grid2">'
+    for _ in range(4):
+        b += ('<div class="gridcell">' + drawbox('', 'height: 62mm') +
+              '<div class="pl"><span class="pl-label">Name</span><div class="slot-line"></div></div>'
+              '<div class="pl"><span class="pl-label">Who, or where</span><div class="slot-line"></div></div></div>')
+    b += '</div>'
+    return Page(b, 'special-page grid-page')
+
+def changelog_page(heading):
+    b = f'<h2 class="sp-head">{esc(heading)}</h2><p class="sp-instr">Date. What changed. What we did about it.</p><div class="changelog">'
+    for _ in range(7):
+        b += ('<div class="logrow"><div class="pl" style="flex:0 0 1.3in"><span class="pl-label">Date</span><div class="slot-line"></div></div>'
+              '<div class="pl" style="flex:1 1 auto"><span class="pl-label">What changed, and what we did</span><div class="slot-line"></div><div class="slot-line"></div></div></div>')
+    b += '</div>'
+    return Page(b, 'special-page')
+
 def letter_pages(heading, n):
     out = []
     first = (f'<div class="prompt-head letter-head"><h2 class="prompt">{esc(heading)}</h2>'
@@ -376,6 +493,43 @@ for it in items:
             ensure_verso(); start = len(pages) + 1; [add(p) for p in recipe_pages(instr)]
         else: raise ValueError(a)
         index_entries.append((part_title, names[a], start))
+    elif k == 'lifepage':
+        text = ls[0].strip(); sub = None
+        for l in ls[1:]:
+            if l.startswith('>'): sub = l[1:].strip()
+        pg = add(lifepage(text, sub)); prompt_index[text] = pg.num; index_entries.append((part_title, text, pg.num))
+    elif k == 'fields':
+        sub = None; items = []
+        for l in ls:
+            if l.startswith('>'): sub = l[1:].strip()
+            elif l.startswith('- '):
+                lab, _, n = l[2:].partition('|'); items.append((lab.strip(), int(n.strip() or 2)))
+        pg = add(fields_page(a, sub, items)); index_entries.append((part_title, a, pg.num))
+    elif k == 'names':
+        sub = None
+        for l in ls:
+            if l.startswith('>'): sub = l[1:].strip()
+        pg = add(names_page(a, sub)); index_entries.append((part_title, a, pg.num))
+    elif k == 'words':
+        sub = None
+        for l in ls:
+            if l.startswith('>'): sub = l[1:].strip()
+        pg = add(words_page(a, sub)); index_entries.append((part_title, a, pg.num))
+    elif k == 'photogrid':
+        pg = add(photogrid_page(a)); index_entries.append((part_title, a, pg.num))
+    elif k == 'changelog':
+        pg = add(changelog_page(a)); index_entries.append((part_title, a, pg.num))
+    elif k == 'flow':
+        fpath, _, rest = a.partition('|'); label, _, title = rest.partition('|')
+        fpath, label, title = fpath.strip(), label.strip(), title.strip()
+        ensure_recto()
+        start = len(pages) + 1
+        part_label, part_title = ROMAN.get(label, label.title()), title
+        n, fpdf = render_flow(os.path.join(os.path.dirname(MS), fpath), part_label, title, start)
+        for _ in range(n): add(Page('', 'flow-placeholder', folio=False))
+        flows.append((start, n, fpdf))
+        contents.append((part_label, title, start))
+        index_entries.append((title, title, start))
     elif k == 'cast':
         add(cast_page())
     elif k == 'story':
@@ -481,6 +635,24 @@ for p in pages:
 
 # ---------- render ----------
 CSS = open(os.path.join(ROOT, '05-interior', 'interior.css'), encoding='utf-8').read()
+if (_args.trim_w, _args.trim_h) != (7.0, 10.0):
+    CSS += f"\n@page {{ size: {_args.trim_w}in {_args.trim_h}in; }} .page {{ width: {_args.trim_w}in; height: {_args.trim_h}in; }}\n"
+if _args.extra_css:
+    CSS += '\n' + open(_args.extra_css, encoding='utf-8').read()
+CSS += '''
+.fields { display: flex; flex-direction: column; flex: 1 1 auto; }
+.fields .field { margin-bottom: 3.5mm; }
+.fields .field.grow { flex: 1 1 auto; display: flex; flex-direction: column; }
+.fields .field.grow .qlines { flex: 1 1 auto; height: auto !important; }
+.fields .field .pl-label { display: block; margin-bottom: 1mm; }
+.namegroup { margin-bottom: 5mm; padding-bottom: 3mm; border-bottom: 0.5pt solid #ddd; }
+.grid2 { display: flex; flex-wrap: wrap; gap: 6mm 8mm; margin-top: 4mm; }
+.gridcell { flex: 0 0 calc(50% - 4mm); }
+.gridcell .pl { margin-top: 2mm; }
+.changelog .logrow { display: flex; gap: 6mm; margin-bottom: 4mm; }
+.life-body { display: flex; flex-direction: column; flex: 1 1 auto; }
+.life-body .lines { flex: 1 1 auto; }
+'''
 FONTS = open(os.path.join(ROOT, '05-interior', 'fonts', 'fonts.css'), encoding='utf-8').read()
 
 def render_page(p):
@@ -529,6 +701,30 @@ if not _args.html_only:
     r = subprocess.run([CHROME, '--headless', '--no-sandbox', '--disable-gpu', '--no-pdf-header-footer',
                         '--run-all-compositor-stages-before-draw', '--virtual-time-budget=10000',
                         f'--print-to-pdf={pdf_path}', 'file://' + html_path], capture_output=True, text=True)
+    if flows:
+        tmp = os.path.join(OUT, '_split'); shutil.rmtree(tmp, ignore_errors=True); os.makedirs(tmp)
+        subprocess.run(['pdfseparate', pdf_path, os.path.join(tmp, 'm-%04d.pdf')], check=True)
+        order = []
+        skip_until = 0
+        for i in range(1, len(pages) + 1):
+            hit = [f for f in flows if f[0] == i]
+            if hit:
+                start, n, fpdf = hit[0]
+                subprocess.run(['pdfseparate', fpdf, os.path.join(tmp, f'f{start}-%04d.pdf')], check=True)
+                order += [os.path.join(tmp, f'f{start}-{j:04d}.pdf') for j in range(1, n + 1)]
+                skip_until = start + n - 1
+            elif i <= skip_until:
+                continue
+            else:
+                order.append(os.path.join(tmp, f'm-{i:04d}.pdf'))
+        final = os.path.join(OUT, 'interior.pdf')
+        subprocess.run(['pdfunite'] + order + [final + '.tmp'], check=True)
+        os.replace(final + '.tmp', final)
+        shutil.rmtree(tmp, ignore_errors=True)
+        for _, _, fpdf in flows:
+            for ext in ('.pdf', '.html'):
+                try: os.remove(fpdf.replace('.pdf', ext))
+                except OSError: pass
     data = open(pdf_path, 'rb').read()
     n = len(re.findall(rb'/Type\s*/Page[^s]', data))
     print(f'pdf pages (approx): {n}  size: {len(data)/1e6:.1f} MB')

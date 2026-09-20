@@ -1,0 +1,13 @@
+/* Still Me overrides: 8.5 x 11, larger type, wider rules */
+body { font-size: 13pt; }
+.lines, .qlines { background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(10mm - 0.75pt), #9c9c9c calc(10mm - 0.75pt), #9c9c9c 10mm); }
+.qlines { height: 20mm; } .qlines.two { height: 20mm; } .qlines.three { height: 30mm; }
+h2.prompt { font-size: 25pt; }
+p.sub { font-size: 13.5pt; }
+.intro p, .fm-text p { font-size: 13.5pt; }
+.qitem .stem { font-size: 15pt; }
+.pl .slot-line { height: 8.5mm; }
+.pl-label, .tier, .family-q .label { font-size: 8.5pt; }
+h2.quick-head, h2.sp-head { font-size: 30pt; }
+.opener { max-width: 5.4in; }
+.fm-text { max-width: 5.6in; }
