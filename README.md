@@ -16,7 +16,7 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 | `05-interior/` | Stage 7: KDP interior specification and layout files |
 | `06-cover/` | Stage 8–9: cover concepts, final cover, back cover copy |
 | `07-amazon/` | Stage 10: listing copy, keywords, categories, launch and ad strategy |
-| `08-extensions/` | Future editions (only after the flagship proves out) |
+| `08-extensions/` | New book ideas, ranked, with research; future editions |
 
 ## Stage tracker
 
