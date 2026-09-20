@@ -2,11 +2,11 @@
 """Build cover files.
 
   python3 06-cover/build_cover.py            -> concepts A/B/C front covers (PNG) + full paperback wrap PDF for the chosen direction
-Paperback wrap: 7 x 10 trim, 250 pp cream (spine 0.625 in), 0.125 in bleed -> 14.875 x 10.25 in.
+Paperback wrap: 7 x 10 trim, 254 pp cream (spine 0.635 in), 0.125 in bleed -> 14.885 x 10.25 in.
 """
 import os, subprocess, shutil, html, argparse
 ap = argparse.ArgumentParser()
-ap.add_argument('--spine', type=float, default=0.625, help='spine width in inches (KDP calculator)')
+ap.add_argument('--spine', type=float, default=0.635, help='spine width in inches (KDP calculator)')
 ap.add_argument('--bleed', type=float, default=0.125, help='bleed per side in inches (0.125 paperback)')
 ap.add_argument('--wrap', type=float, default=0.0, help='hardcover wrap-around per side in inches (KDP template), 0 for paperback')
 ap.add_argument('--name', default='paperback-wrap', help='output file name')

@@ -1,6 +1,6 @@
 # STAGE 7 — KDP Interior Specification
 
-**Status:** Built. `build/interior.pdf` is the print-ready interior (250 pages, 7 x 10 in, fonts embedded).
+**Status:** Built. `build/interior.pdf` is the print-ready interior (254 pages, 7 x 10 in, fonts embedded).
 **Rebuild:** `python3 05-interior/build_interior.py` (reads `04-manuscript/MANUSCRIPT.md`, writes `build/interior.html` and `build/interior.pdf`).
 **Preview pages:** `python3 05-interior/preview_pages.py OUTDIR 16 24 ...` renders single pages to PNG.
 
@@ -12,10 +12,10 @@
 | Interior | Black & white |
 | Paper | Cream |
 | Bleed | No bleed |
-| Page count | 250 (even; last page is a verso) |
+| Page count | 254 (even; last page is a verso) |
 | Cover finish | Matte |
-| Spine width (cream, 250 pp at 0.0025 in/page) | 0.625 in |
-| Full cover file size (with 0.125 in bleed) | 14.875 x 10.25 in |
+| Spine width (cream, 254 pp at 0.0025 in/page) | 0.635 in |
+| Full cover file size (with 0.125 in bleed) | 14.885 x 10.25 in |
 
 Hardcover (same interior file): KDP 7 x 10 case laminate. Spine width for hardcover is computed by
 KDP's cover calculator; use it at upload time.
@@ -64,7 +64,7 @@ The build script inserts blank pages only where recto/verso alignment requires t
 
 ## Preflight checks passed
 
-- `pdfinfo`: 250 pages, 504 x 720 pt (exactly 7 x 10 in)
+- `pdfinfo`: 254 pages, 504 x 720 pt (exactly 7 x 10 in)
 - `pdffonts`: every font embedded and subset; no system-font fallbacks
 - No content inside the 0.25 in safe zone from any trim edge except the running foot at 0.42 in (KDP requires 0.25 in minimum outside, 0.375 in + 0.25 in inside for this page count; both satisfied)
 - Visual check of title, giver, opening letter, ten pages, contents, opener, prompt, marked prompt, family tree, spread, quick ones, family question, Part Six skip line, letter, in my own hand, reader page, blank pages

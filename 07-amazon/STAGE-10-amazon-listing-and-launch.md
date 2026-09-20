@@ -35,12 +35,13 @@ Most memory journals are written from the child's point of view, as a list of qu
 <li>A page at the end of every part where <i>you</i> write a question of your own before you give it</li>
 <li>A "When You Miss Me" section: the song to play, the recipe to make, the joke to tell</li>
 <li>Eight letters, including one last letter, with room to write them</li>
-<li>Family tree, the important people, family sayings, a recipe in their handwriting, and a signature page</li>
+<li>Family tree, a decade timeline, the important people, family sayings, a recipe in their handwriting, a signature page, and an index of every prompt</li>
+<li>Large, easy-to-read prompts, and a note for anyone who finds writing hard: talk, and let someone write it down</li>
 </ul>
 
 <b>For everyone in the family.</b> Written for a mother, father, grandmother, grandfather, stepparent, or anyone whose story you want to keep. The giver's page at the front makes it theirs before it's opened.
 
-7 x 10 inches. 250 pages. Cream paper. Matte cover. Made to be written in, and kept.
+7 x 10 inches. 254 pages. Cream paper. Matte cover. Made to be written in, and kept.
 
 <b>Write it while you're here. Keep it forever.</b>
 
@@ -53,6 +54,8 @@ Most memory journals are written from the child's point of view, as a list of qu
 5. **A section for the days you miss them.** The song, the place, the recipe, the joke, and the things they don't want you to do.
 6. **Ends with letters.** To each child, to a partner, to grandchildren, to the family, and one last letter with four full pages.
 7. **One book for every parent and grandparent.** Nothing inside assumes who they are to you. Buy one for each of them.
+
+Supporting claims available for A+ and ads, all true of the built book: large 21-point prompts, a two-page index of every prompt, a one-page guide for the giver, a dictate-or-record option for anyone who finds writing hard, and a decade timeline.
 
 ## 4. Backend keywords (7 fields, 50 characters each, no repeats of title words, no brand names)
 
@@ -103,8 +106,8 @@ for a mother, father, grandmother, or grandfather without a separate edition.
 
 | Format | List | Print cost | Royalty (60%) |
 |---|---|---|---|
-| Paperback, 250 pp | $19.99 | $4.00 | $7.99 |
-| Hardcover, 250 pp | $28.99 | ~$8.50 | ~$8.89 |
+| Paperback, 254 pp | $19.99 | $4.05 | $7.94 |
+| Hardcover, 254 pp | $28.99 | ~$8.55 | ~$8.84 |
 
 Launch price for the paperback: $17.99 for the first 14 days, then $19.99. A launch price gives early
 reviewers a reason to buy now and lets the listing show a strike-through later.

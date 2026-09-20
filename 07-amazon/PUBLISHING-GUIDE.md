@@ -53,10 +53,10 @@ shows on the page.
 
 ## Step 4. Confirm the spine (five minutes)
 
-The interior is 250 pages. Spine width for KDP paperback on cream paper is page count multiplied
-by 0.0025 inches, which is 0.625 inches. Confirm it in KDP's Cover Calculator
-(kdp.amazon.com/cover-calculator) using: Paperback, Black & white, Cream, 7 x 10, 250 pages. The
-calculator's full cover size should read 14.875 x 10.25 inches, which is what the cover file is.
+The interior is 254 pages. Spine width for KDP paperback on cream paper is page count multiplied
+by 0.0025 inches, which is 0.635 inches. Confirm it in KDP's Cover Calculator
+(kdp.amazon.com/cover-calculator) using: Paperback, Black & white, Cream, 7 x 10, 254 pages. The
+calculator's full cover size should read 14.885 x 10.25 inches, which is what the cover file is.
 If the numbers differ, send them back and the cover is rebuilt with:
 
 ```
@@ -117,8 +117,8 @@ Save and continue.
 
 If the previewer flags anything, note the exact message and send it back here.
 
-Approve the preview. KDP reports the printing cost on the next page. At 250 pages it should be about
-$4.00 for US orders.
+Approve the preview. KDP reports the printing cost on the next page. At 254 pages it should be about
+$4.05 for US orders.
 
 ## Step 7. Order a printed proof before publishing (one week of waiting)
 
@@ -156,7 +156,7 @@ the book is live. The product page appears without images or reviews for the fir
 1. On the Bookshelf, under the paperback, choose **Create hardcover**. KDP copies the details; check them.
 2. Print options: Black & white, cream, 7 x 10, no bleed, matte.
 3. ISBN: assign a free KDP ISBN for the hardcover (it gets its own).
-4. **Cover:** open KDP's Cover Calculator for Hardcover, Black & white, Cream, 7 x 10, 250 pages, and
+4. **Cover:** open KDP's Cover Calculator for Hardcover, Black & white, Cream, 7 x 10, 254 pages, and
    download the template. Read the numbers it gives for spine width and the wrap allowance, and send
    them back here. The cover will be rebuilt to those numbers with:
    ```

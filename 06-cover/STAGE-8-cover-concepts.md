@@ -40,7 +40,7 @@ hairline elements near the trim, and the ink color is deep enough that a scuff r
 - Author in small caps, 13 pt. Imprint in Inter caps, 7.5 pt, 0.26 em tracking.
 - Nothing within 0.25 in of any trim edge except the ground color.
 
-## Spine (0.625 in for 250 pages on cream)
+## Spine (0.635 in for 254 pages on cream)
 
 Title in cream caps reading top to bottom, author in small caps after it, imprint mark at the foot.
 KDP requires text spines only at 100+ pages; this book qualifies. Text is kept 0.0625 in clear of the
@@ -61,10 +61,10 @@ build script takes the spine width and bleed as variables.
 
 | File | Size | Use |
 |---|---|---|
-| `build/paperback-wrap.pdf` | 14.875 x 10.25 in, single page, fonts embedded | Upload as the paperback cover |
+| `build/paperback-wrap.pdf` | 14.885 x 10.25 in, single page, fonts embedded | Upload as the paperback cover |
 | `build/concept-B-ink.png` | 7 x 10 in at 192 dpi | Reference and listing mock-ups |
 | `build/concept-A-bone.png`, `build/concept-C-rules.png` | same | Alternatives, kept for the record |
 
 Before upload: run the wrap through KDP's Cover Calculator template to confirm the spine width
-KDP computes for the final page count matches 0.625 in. If the interior page count changes, rebuild
+KDP computes for the final page count matches 0.635 in. If the interior page count changes, rebuild
 with the new spine value.

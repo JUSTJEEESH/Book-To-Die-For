@@ -127,3 +127,17 @@ ol.ten li::before { content: counter(ten); font-variant-numeric: oldstyle-nums; 
 .reader { height: 100%; display: flex; flex-direction: column; justify-content: center; text-align: center; padding: 0 0.15in 1in 0.15in; }
 .reader p.reader-head { font-family: 'Cormorant Garamond', serif; font-style: normal; font-weight: 600; font-size: 24pt; margin: 0 0 14pt 0; }
 .reader p { font-size: 14pt; line-height: 1.55; margin: 0; font-style: italic; }
+
+/* ---- giver's note, decades, index ---- */
+.fm-lead { font-style: italic; color: #555; }
+ol.giver { padding: 0 0 0 1.3em; margin: 6pt 0 0 0; }
+ol.giver li { margin: 0 0 10pt 0; font-size: 12.5pt; line-height: 1.5; padding-left: 4pt; }
+ol.giver li::marker { color: #777; font-variant-numeric: oldstyle-nums; }
+.decades .pl { margin-bottom: 3.2mm; }
+.decades .pl .slot-line { height: 7.2mm; }
+.index-cols { display: flex; gap: 0.3in; margin-top: 4pt; }
+.index-col { flex: 1 1 0; min-width: 0; }
+.idx-head { font-family: 'Inter', sans-serif; font-size: 7pt; letter-spacing: 0.14em; text-transform: uppercase; color: #777; margin: 7pt 0 3pt 0; }
+.idx-item { display: flex; align-items: baseline; gap: 4pt; font-size: 8.6pt; line-height: 1.22; margin: 0 0 1.6pt 0; }
+.idx-t { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.idx-n { flex: 0 0 auto; color: #444; font-variant-numeric: oldstyle-nums; }

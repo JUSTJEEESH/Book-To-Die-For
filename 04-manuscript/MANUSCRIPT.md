@@ -21,6 +21,21 @@ This book is meant to be written in. A fine ballpoint or a fine-tip pen shows th
 
 Series: Words to Keep
 
+@@ page giver-note
+If you're giving this book
+
+Five things that make the difference between a book that gets filled in and one that sits on a shelf.
+
+Fill in the next page before you wrap it. Say why. It's the first thing they'll read.
+
+At the end of every part there's a page called A question from your family. Write one question on each. Your questions, in your handwriting, are what make this book theirs.
+
+When you give it, ask them one question out loud. Any one. The first answer is the hardest, and you can take it for them.
+
+Show them the page called If you only fill out ten pages. Nobody finishes a book like this. Ten pages is a treasure.
+
+Don't ask when it'll be done. Ask what they've written lately.
+
 @@ page given
 This book was given to
 by
@@ -29,8 +44,6 @@ Because:
 
 If you bought this book for yourself:
 This book belongs to
-
-@@ page blank
 
 @@ page letter-opening
 This book is yours.
@@ -62,7 +75,11 @@ Each part ends with a page of quick ones, and a page with a question from your f
 
 Where the book says mother, father, child, or family, it means whoever those people were for you.
 
+If writing is hard, or gets hard: talk, and let someone you trust write it down. Their handwriting with your words still counts. Or record yourself answering, and write on the page the date and where the recording is kept.
+
 Blank pages are for photographs, drawings, recipes, or anything the book didn't think to ask for.
+
+There's an index at the back, so anyone can find a page again.
 
 You decide who reads this, and when.
 
@@ -86,6 +103,8 @@ Few people finish every page of a book like this. If you only do ten, do these.
 You can skip anything.
 
 Any question. Any page. Any part. Nothing in this book is owed. What you leave blank says nothing about you, and what you fill in is yours to fill in any way you like.
+
+Cross things out. Spell things wrong. This book is not precious. What goes in it is.
 
 @@ page blank
 
@@ -169,7 +188,13 @@ Tell me about a perfectly ordinary day from when you were nine.
 
 @@ family
 
-@@ photo
+@@ quick The year I was born
+- What a loaf of bread cost, or a gallon of gas, or a movie ticket.
+- The song that was on every radio.
+- What the grown-ups were worried about.
+- Who I was named after, or where the name came from.
+- The first news event I remember hearing about.
+- Something everyone had then that nobody has now.
 
 @@ opener PART TWO | Becoming Me
 Somewhere between the child and the adult, there was a person your family has never met. The one who lied about where they were going. The one with a plan. The one who was sure about everything.
@@ -369,7 +394,8 @@ What did you want that you didn't get?
 
 @@ family
 
-@@ photo
+@@ special decades
+One line for each. Where you were, who you were with, what mattered.
 
 @@ opener PART FIVE | Becoming a Parent
 If you never had children, turn to Part Six. Nothing here is required, and nothing is missing without it.
@@ -823,5 +849,8 @@ You are holding someone's own words, in their own hand, written for you. Not eve
 
 @@ page anything-else
 Anything else.
+
+@@ page index
+Where to find things
 
 @@ page blank

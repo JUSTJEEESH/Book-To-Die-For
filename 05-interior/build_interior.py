@@ -59,6 +59,7 @@ skipline = None
 contents = []          # (label, title, pagenum)
 ten_targets = []       # prompt texts for "ten pages" lookup
 prompt_index = {}      # prompt text -> page number
+index_entries = []     # (part_title, text, page)
 
 def add(page):
     page.num = len(pages) + 1
@@ -174,6 +175,14 @@ def recipe_pages(instr):
          '<p class="tier mt">The part that isn\'t written down anywhere</p><div class="qlines three"></div>')
     return [Page(v, 'special-page recipe'), Page(r, 'special-page recipe')]
 
+def decades_page(instr):
+    rows = ['Before I was ten', 'My teens', 'My twenties', 'My thirties', 'My forties', 'My fifties', 'My sixties', 'My seventies', 'After that', 'Now']
+    b = '<h2 class="sp-head">My life, a line at a time</h2><p class="sp-instr">' + esc(instr) + '</p><div class="decades">'
+    for r in rows:
+        b += f'<div class="pl"><span class="pl-label">{esc(r)}</span><div class="slot-line"></div><div class="slot-line"></div></div>'
+    b += '</div>'
+    return Page(b, 'special-page decades-page')
+
 def letter_pages(heading, n):
     out = []
     first = (f'<div class="prompt-head letter-head"><h2 class="prompt">{esc(heading)}</h2>'
@@ -205,6 +214,9 @@ def text_page(kind, lines):
     if kind == 'letter-opening':
         b = f'<h2 class="fm-head">{esc(ps[0])}</h2><div class="fm-text">' + ''.join(f'<p>{esc(p)}</p>' for p in ps[1:]) + '</div>'
         return Page(b, 'front fm')
+    if kind == 'giver-note':
+        b = f'<h2 class="fm-head small">{esc(ps[0])}</h2><div class="fm-text"><p class="fm-lead">{esc(ps[1])}</p><ol class="giver">' + ''.join(f'<li>{esc(x)}</li>' for x in ps[2:]) + '</ol></div>'
+        return Page(b, 'front fm giver-page')
     if kind in ('howto',):
         b = f'<h2 class="fm-head small">{esc(ps[0])}</h2><div class="fm-text">' + ''.join(f'<p>{esc(p)}</p>' for p in ps[1:]) + '</div>'
         return Page(b, 'front fm')
@@ -229,6 +241,8 @@ def text_page(kind, lines):
     if kind == 'for-the-reader':
         b = f'<div class="reader"><p class="reader-head">{esc(ps[0])}</p>' + ''.join(f'<p>{esc(p)}</p>' for p in ps[1:]) + '</div>'
         return Page(b, 'reader-page', folio=False)
+    if kind == 'index':
+        return Page('{{INDEX}}', 'front fm index-page')
     if kind == 'anything-else':
         return Page(f'<div class="prompt-head"><h2 class="prompt">{esc(ps[0])}</h2></div>' + lines_block(), 'prompt-page')
     if kind == 'blank':
@@ -248,7 +262,7 @@ for it in items:
             blank(); continue
         if a in ('in-my-own-hand','for-the-reader','anything-else'): part_title = None
         pg = text_page(a, ls)
-        if a in ('half-title','title','given','letter-opening','permission','contents','in-my-own-hand'):
+        if a in ('half-title','title','giver-note','letter-opening','permission','contents','in-my-own-hand'):
             ensure_recto()
         add(pg)
         if a == 'letter-opening': contents.append(('', 'This book is yours', pg.num))
@@ -276,23 +290,29 @@ for it in items:
             add(prompt_page(text, sub, marked, cont=True))
         else:
             pg = add(prompt_page(text, sub, marked)); prompt_index[text] = pg.num
+        index_entries.append((part_title, text, pg.num))
     elif k in ('quick', 'finish'):
-        add(quick_page(a, [l[2:].strip() for l in ls if l.startswith('- ')], finish=(k=='finish')))
+        pg = add(quick_page(a, [l[2:].strip() for l in ls if l.startswith('- ')], finish=(k=='finish')))
+        index_entries.append((part_title, a, pg.num))
     elif k == 'family':
-        add(family_page())
+        pg = add(family_page()); index_entries.append((part_title, 'A question from your family', pg.num))
     elif k == 'photo':
         add(photo_page())
     elif k == 'special':
         instr = ' '.join(paras(ls))
+        names = {'family-tree':'Family tree','important-people':'The important people','family-sayings':'Family sayings','decades':'My life, a line at a time','songs':'The songs','recipe':'The recipe'}
+        start = len(pages) + 1
         if a == 'family-tree':
-            ensure_verso(); [add(p) for p in family_tree_pages(instr)]
+            ensure_verso(); start = len(pages) + 1; [add(p) for p in family_tree_pages(instr)]
         elif a == 'important-people':
-            ensure_verso(); [add(p) for p in important_people_pages(instr)]
+            ensure_verso(); start = len(pages) + 1; [add(p) for p in important_people_pages(instr)]
         elif a == 'family-sayings': add(sayings_page(instr))
+        elif a == 'decades': add(decades_page(instr))
         elif a == 'songs': add(songs_page(instr))
         elif a == 'recipe':
-            ensure_verso(); [add(p) for p in recipe_pages(instr)]
+            ensure_verso(); start = len(pages) + 1; [add(p) for p in recipe_pages(instr)]
         else: raise ValueError(a)
+        index_entries.append((part_title, names[a], start))
     elif k == 'letter':
         heading, _, n = a.partition('|')
         heading, n = heading.strip(), int(n.strip() or 2)
@@ -301,11 +321,9 @@ for it in items:
         for p in letter_pages(heading, n):
             q = add(p); first = first or q
         prompt_index[heading] = first.num
+        index_entries.append((part_title, heading, first.num))
     else:
         raise ValueError(k)
-
-# pad to an even count so the last page is a verso
-if len(pages) % 2 == 1: blank()
 
 # ---------- substitutions ----------
 def contents_html():
@@ -326,6 +344,46 @@ def ten_lookup(t):
         if t.lower()[:20] in k.lower():
             return str(v)
     return '?'
+
+def index_pages():
+    # group by part in order; each entry one line
+    lines = []
+    cur = None
+    for part, text, num in index_entries:
+        if part != cur:
+            lines.append(('head', part, None)); cur = part
+        lines.append(('item', text, num))
+    PER_PAGE = 92   # two columns of 46 lines
+    chunks = [lines[i:i+PER_PAGE] for i in range(0, len(lines), PER_PAGE)]
+    out = []
+    for ci, chunk in enumerate(chunks):
+        half = (len(chunk) + 1) // 2
+        cols = [chunk[:half], chunk[half:]]
+        b = '<h2 class="fm-head small">Where to find things</h2>' if ci == 0 else ''
+        b += '<div class="index-cols">'
+        for col in cols:
+            b += '<div class="index-col">'
+            for kind, text, num in col:
+                if kind == 'head': b += f'<p class="idx-head">{esc(text)}</p>'
+                else: b += f'<p class="idx-item"><span class="idx-t">{esc(text)}</span><span class="idx-n">{num}</span></p>'
+            b += '</div>'
+        b += '</div>'
+        out.append(b)
+    return out
+
+# expand the index placeholder into real pages, renumbering what follows
+for i, p in enumerate(pages):
+    if p.body == '{{INDEX}}':
+        bodies = index_pages()
+        new_pages = [Page(b, 'front fm index-page') for b in bodies]
+        tail = pages[i+1:]
+        del pages[i:]
+        for np_ in new_pages:
+            np_.num = len(pages) + 1; np_.part = None; pages.append(np_)
+        for tp in tail:
+            tp.num = len(pages) + 1; pages.append(tp)
+        break
+if len(pages) % 2 == 1: blank()
 
 for p in pages:
     if '{{CONTENTS}}' in p.body: p.body = p.body.replace('{{CONTENTS}}', contents_html())
