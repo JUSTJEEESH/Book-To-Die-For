@@ -4,60 +4,64 @@ A step-by-step path from the files in this repo to a live listing. Each step say
 you need from the repo, and what to send back so the files can be finalized. Estimated calendar time
 from Step 1 to a live paperback: three to four weeks, most of it waiting on the proof and on KDP review.
 
-Files you will upload:
+Files you will upload (all ready now):
 
 | File | Path | Used at |
 |---|---|---|
-| Interior PDF | `05-interior/build/interior.pdf` | Step 6 (after the ISBN rebuild in Step 4) |
+| Interior PDF | `05-interior/build/interior.pdf` | Step 6 |
 | Paperback cover PDF | `06-cover/build/paperback-wrap.pdf` | Step 6 |
 | Hardcover cover PDF | built in Step 9 to KDP's numbers | Step 9 |
 | Description, keywords, categories | `07-amazon/STAGE-10-amazon-listing-and-launch.md` | Step 5 |
 
 ---
 
-## Step 1. Open the accounts (day 1, about an hour)
+## Step 1. Open the account (day 1, about an hour)
 
-1. **KDP account.** Go to kdp.amazon.com and sign in with your Amazon account, or create one. Complete
-   the three sections on the Account page: author/publisher information, payment (bank account for
-   direct deposit), and the tax interview (a US individual enters a Social Security number on a W-9;
-   an LLC enters its EIN). Royalties cannot be paid until this is complete.
-2. **Bowker ISBNs.** Go to myidentifiers.com (the only US ISBN agency). Buy a block of ten. One
-   ISBN costs about the same as three, and you need two now (paperback and hardcover) and more for
-   later editions. When you register, the publisher name you enter is the imprint that will appear on
-   Amazon. Enter **Words to Keep**.
-   - Why not the free KDP ISBN: it lists the publisher as "Independently published," cannot be used
-     outside Amazon, and cannot be moved later. For a book positioned as premium, the imprint matters.
-3. **Amazon Author Central.** Go to author.amazon.com and create the author profile for Joshua Caleb
-   Green. Add a short biography and a photograph. Books attach to it automatically once live.
+1. **KDP account.** Sign in at kdp.amazon.com. Since you already publish on KDP, confirm the
+   Account page is complete: publisher information, bank account, and the tax interview. Nothing
+   else is needed before you start.
+2. **Amazon Author Central.** At author.amazon.com, add Joshua Caleb Green as an author profile if it
+   is not there already, with a short biography and a photograph. Books attach automatically.
 
-## Step 2. Assign the ISBNs (day 1, fifteen minutes)
+## Step 2. ISBNs: let KDP assign them (no cost, no waiting)
 
-In Bowker, assign one ISBN to the paperback and one to the hardcover. Fill in the title, subtitle,
-author, format, trim size, page count (250), price, and publication date (choose a date three to
-four weeks out). Copy both 13-digit numbers.
+KDP gives a free ISBN to each print format when you set it up, and that is what to use here.
+On the Content page you click "Assign me a free KDP ISBN," and the number appears immediately.
+The paperback and the hardcover each get their own.
 
-Send both numbers back here. The copyright page will be rebuilt with them (Step 4).
+What the free ISBN means, so the choice is deliberate:
+
+- The Amazon product page lists the publisher as "Independently published." The copyright page
+  inside the book still says Words to Keep, and the series name still appears on the listing.
+- The ISBN can only be used for the KDP edition. If you ever print the same edition through another
+  printer, that printer would need its own ISBN. That is a bridge to cross later, if ever.
+- Expanded Distribution works with the free ISBN.
+
+The copyright page has been built without an ISBN line, so the interior file is ready to upload as is.
+The barcode KDP prints on the back cover carries the number. If you would like the ISBN printed on
+the copyright page as well, send the number after KDP assigns it and the interior will be rebuilt;
+it is a one-line change.
+
+Buying your own ISBNs from Bowker is only worth it if you want "Words to Keep" shown as the publisher
+on Amazon, or plan to sell the same edition outside Amazon. Neither is needed to launch.
 
 ## Step 3. Decide the publication date (day 1)
 
-Pick a date about four weeks out. That leaves time for the proof (Step 7). Enter the same date in
-Bowker and, later, as the release date in KDP. Do not use KDP's pre-order for a print book; KDP
-paperbacks cannot be pre-ordered, so the book simply goes live when you press Publish.
+Pick a date about four weeks out. That leaves time for the proof (Step 7). KDP paperbacks cannot
+be pre-ordered; the book goes live when you press Publish, and the release date you enter is what
+shows on the page.
 
-## Step 4. Final rebuild with the ISBNs (fifteen minutes, done here)
+## Step 4. Confirm the spine (five minutes)
 
-Once the ISBNs are in the manuscript's copyright page, the interior is rebuilt with one command and
-the page count is confirmed at 250. If it changes, the spine width changes, and the cover is rebuilt
-to match. The command for the cover, for reference:
+The interior is 250 pages. Spine width for KDP paperback on cream paper is page count multiplied
+by 0.0025 inches, which is 0.625 inches. Confirm it in KDP's Cover Calculator
+(kdp.amazon.com/cover-calculator) using: Paperback, Black & white, Cream, 7 x 10, 250 pages. The
+calculator's full cover size should read 14.875 x 10.25 inches, which is what the cover file is.
+If the numbers differ, send them back and the cover is rebuilt with:
 
 ```
-python3 06-cover/build_cover.py --spine 0.625 --bleed 0.125
+python3 06-cover/build_cover.py --no-concepts --spine <spine> --bleed 0.125
 ```
-
-Spine width for KDP paperback on cream paper is page count multiplied by 0.0025 inches. At 250 pages
-that is 0.625 inches. Confirm it in KDP's Cover Calculator (kdp.amazon.com/cover-calculator) before
-uploading, using: Paperback, Black & white, Cream, 7 x 10, 250 pages. The calculator's full cover
-size must read 14.875 x 10.25 inches, which is what the file is.
 
 ## Step 5. Create the paperback in KDP: "Paperback Details" page (thirty minutes)
 
@@ -96,7 +100,7 @@ Save and continue.
 
 | Field | Enter |
 |---|---|
-| ISBN | Use my own ISBN. Enter the paperback ISBN and imprint **Words to Keep** (must match Bowker exactly) |
+| ISBN | **Assign me a free KDP ISBN.** Copy the number it gives you |
 | Publication date | The date from Step 3 |
 | Print options | Black & white interior with **cream** paper; trim **7 x 10 in**; **No bleed**; cover finish **Matte** |
 | Manuscript | Upload `interior.pdf` |
@@ -151,7 +155,7 @@ the book is live. The product page appears without images or reviews for the fir
 
 1. On the Bookshelf, under the paperback, choose **Create hardcover**. KDP copies the details; check them.
 2. Print options: Black & white, cream, 7 x 10, no bleed, matte.
-3. ISBN: your own, the hardcover ISBN, imprint Words to Keep.
+3. ISBN: assign a free KDP ISBN for the hardcover (it gets its own).
 4. **Cover:** open KDP's Cover Calculator for Hardcover, Black & white, Cream, 7 x 10, 250 pages, and
    download the template. Read the numbers it gives for spine width and the wrap allowance, and send
    them back here. The cover will be rebuilt to those numbers with:
@@ -202,17 +206,15 @@ re-reviews updated files within 72 hours and the listing stays live meanwhile.
 
 ## What to send back, in order
 
-1. The two ISBNs (Step 2).
-2. The chosen publication date (Step 3).
-3. Any Previewer messages (Step 6).
-4. Photographs and notes from the proof (Step 7).
-5. The hardcover template numbers (Step 9).
+1. The chosen publication date (Step 3), and the ISBN only if you want it printed inside.
+2. Any Previewer messages (Step 6).
+3. Photographs and notes from the proof (Step 7).
+4. The hardcover template numbers (Step 9).
 
 ## Costs to expect
 
 | Item | Approximate |
 |---|---|
-| Ten ISBNs from Bowker | $295 |
 | Paperback proof, shipped | $10 |
 | Hardcover proof, shipped | $15 |
 | Twenty-five early-reader copies at author price | $100 to $150 plus shipping |

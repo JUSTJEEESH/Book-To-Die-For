@@ -12,7 +12,6 @@ Words to Keep
 @@ page copyright
 Copyright © 2026 Joshua Caleb Green. All rights reserved.
 Published by Words to Keep.
-ISBN: [assigned before print]
 First edition.
 
 No part of the printed text of this book may be reproduced without permission from the publisher.
