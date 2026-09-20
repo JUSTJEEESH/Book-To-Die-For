@@ -6,7 +6,7 @@ Built in this order. Each folder holds its brief, manuscript, listing, back cove
 |---|---|---|---|---|
 | 1 | The Stories I Made Up | `01-stories-i-made-up/` | Interior built (116 pp), placeholder wrap built, listing written. Awaiting cover art. | Live by Oct 20, 2026 |
 | 2 | Still Me | `02-still-me/` | Interior built (100 pp, 8.5 x 11, with a 3,800-word guide), placeholder wrap built, listing written. Awaiting cover art. | Live by Jan 2027 |
-| 3 | Lo Que Quiero Que Sepas | `03-lo-que-quiero-que-sepas/` | Not started | Live by Mar 1, 2027 |
+| 3 | Lo Que Quiero Que Sepas | `03-lo-que-quiero-que-sepas/` | Interior built (256 pp, Spanish labels throughout), wrap built (same cover as the flagship), listing written. **Needs the native editor's pass before publishing.** | Live by Mar 1, 2027 |
 | 4 | The Words We Brought With Us | `04-words-we-brought-with-us/` | Not started | Live by mid-Apr 2027 |
 
 Cover prompts and KDP dimensions for all four: `COVER-PROMPTS-AND-DIMENSIONS.md`.
@@ -32,3 +32,9 @@ python3 06-cover/build_cover.py --no-concepts --title "Still Me" --tag "A life-s
 The build now supports `@@ flow FILE | LABEL | Title` for flowing prose sections (paginated by
 Chromium with running feet and continuous page numbers, spliced into the interior with poppler),
 `--trim-w/--trim-h` for other trim sizes, and `--extra-css` for per-book type overrides.
+
+```
+# Lo Que Quiero Que Sepas (Spanish labels via --lang es)
+python3 05-interior/build_interior.py --lang es --manuscript 09-portfolio/03-lo-que-quiero-que-sepas/MANUSCRIPT.md --out 09-portfolio/03-lo-que-quiero-que-sepas/build
+python3 06-cover/build_cover.py --no-concepts --title "Lo Que Quiero<br>Que Sepas" --tag "Mis historias. Mis recuerdos. Mis palabras." --back 09-portfolio/03-lo-que-quiero-que-sepas/back-cover-copy.txt --ink "#1e2838" --spine 0.64 --name paperback-wrap --out-dir 09-portfolio/03-lo-que-quiero-que-sepas/build
+```

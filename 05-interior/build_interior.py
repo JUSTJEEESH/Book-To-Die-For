@@ -17,7 +17,30 @@ _ap.add_argument('--out', default=os.path.join(ROOT, '05-interior', 'build'))
 _ap.add_argument('--html-only', action='store_true')
 _ap.add_argument('--trim-w', type=float, default=7.0); _ap.add_argument('--trim-h', type=float, default=10.0)
 _ap.add_argument('--extra-css', default=None)
+_ap.add_argument('--lang', default='en')
 _args = _ap.parse_args()
+_L = {
+ 'en': dict(family_h='A question from your family.', family_sub='Written by the person who gave you this book.', their_q='Their question',
+            photo='For a photograph, a drawing, or anything else.', contd='(continued)', to='To', signed='Signed', date='Date',
+            contents='Contents', index='Where to find things', tree='Family tree', tree2='And where it went', tree_sub2='Add anyone the boxes leave out. Draw lines however you like.',
+            t_their='Their parents', t_gp='My grandparents', t_p='My parents', t_me='Me', t_sib='My brothers and sisters', t_oth='Others who counted as family',
+            name='name', name_born='name, born', name_who='name, who they were', people='The important people', p_name='Name', p_who='Who they were to me', p_line="One line I'd want you to know",
+            sayings='Family sayings', s_said='We always said', s_meant='What it meant', songs='The songs', so_title='Title, and who sang it', so_why='Why',
+            recipe='The recipe', r_called="What it's called", r_who='Who taught it to me', r_in='What goes in it', r_how='How to make it', r_part="The part that isn't written down anywhere",
+            decades='My life, a line at a time', dec=['Before I was ten','My teens','My twenties','My thirties','My forties','My fifties','My sixties','My seventies','After that','Now'],
+            given_to='This book was given to', by='by', on='on', because='Because', self_intro='If you bought this book for yourself:', belongs='This book belongs to',
+            parts={'PART ONE':'Part One','PART TWO':'Part Two','PART THREE':'Part Three','PART FOUR':'Part Four','PART FIVE':'Part Five','PART SIX':'Part Six','PART SEVEN':'Part Seven','PART EIGHT':'Part Eight','PART NINE':'Part Nine','PART TEN':'Part Ten','PART ELEVEN':'Part Eleven','PART TWELVE':'Part Twelve','PART THIRTEEN':'Part Thirteen'}),
+ 'es': dict(family_h='Una pregunta de tu familia.', family_sub='Escrita por la persona que te regaló este libro.', their_q='Su pregunta',
+            photo='Para una fotografía, un dibujo o cualquier otra cosa.', contd='(continúa)', to='Para', signed='Firma', date='Fecha',
+            contents='Contenido', index='Dónde encontrar cada cosa', tree='Árbol familiar', tree2='Y hacia dónde siguió', tree_sub2='Agrega a quien falte. Dibuja las líneas como quieras.',
+            t_their='Sus padres', t_gp='Mis abuelos', t_p='Mis padres', t_me='Yo', t_sib='Mis hermanos y hermanas', t_oth='Otros que fueron familia',
+            name='nombre', name_born='nombre, año', name_who='nombre, quién fue', people='Las personas importantes', p_name='Nombre', p_who='Quién fue para mí', p_line='Una línea que quiero que sepas de esta persona',
+            sayings='Dichos de la familia', s_said='Lo que siempre decíamos', s_meant='Lo que quería decir', songs='Las canciones', so_title='Título, y quién la cantaba', so_why='Por qué',
+            recipe='La receta', r_called='Cómo se llama', r_who='Quién me la enseñó', r_in='Lo que lleva', r_how='Cómo se hace', r_part='La parte que no está escrita en ningún lado',
+            decades='Mi vida, una línea a la vez', dec=['Antes de los diez','Mi adolescencia','Mis veintes','Mis treintas','Mis cuarentas','Mis cincuentas','Mis sesentas','Mis setentas','Después','Ahora'],
+            given_to='Este libro fue regalado a', by='por', on='el', because='Porque', self_intro='Si compraste este libro para ti:', belongs='Este libro pertenece a',
+            parts={'PRIMERA PARTE':'Primera parte','SEGUNDA PARTE':'Segunda parte','TERCERA PARTE':'Tercera parte','CUARTA PARTE':'Cuarta parte','QUINTA PARTE':'Quinta parte','SEXTA PARTE':'Sexta parte','SÉPTIMA PARTE':'Séptima parte','OCTAVA PARTE':'Octava parte','NOVENA PARTE':'Novena parte','DÉCIMA PARTE':'Décima parte','UNDÉCIMA PARTE':'Undécima parte','DUODÉCIMA PARTE':'Duodécima parte','DECIMOTERCERA PARTE':'Decimotercera parte'}),
+}[_args.lang]
 MS = os.path.abspath(_args.manuscript)
 OUT = os.path.abspath(_args.out)
 CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
@@ -157,7 +180,7 @@ def mark(m): return '<span class="mark" aria-hidden="true"></span>' if m else ''
 def prompt_page(text, sub, marked, cont=False):
     b = '<div class="prompt-head">'
     if cont:
-        b += f'<p class="cont">{esc(text)}<span class="contd"> (continued)</span></p>'
+        b += f'<p class="cont">{esc(text)}<span class="contd"> {esc(_L["contd"])}</span></p>'
     else:
         b += f'<h2 class="prompt">{mark(marked)}{esc(text)}</h2>'
         if sub: b += f'<p class="sub">{esc(sub)}</p>'
@@ -180,34 +203,36 @@ def quick_page(heading, items, finish=False):
     return Page(b, 'quick-page')
 
 def family_page():
-    b = ('<div class="prompt-head"><h2 class="prompt">A question from your family.</h2>'
-         '<p class="sub">Written by the person who gave you this book.</p></div>'
-         '<div class="family-q"><p class="label">Their question</p><div class="qlines two"></div></div>'
+    b = (f'<div class="prompt-head"><h2 class="prompt">{esc(_L["family_h"])}</h2>'
+         f'<p class="sub">{esc(_L["family_sub"])}</p></div>'
+         f'<div class="family-q"><p class="label">{esc(_L["their_q"])}</p><div class="qlines two"></div></div>'
          + lines_block())
     return Page(b, 'prompt-page family-page')
 
 def photo_page():
-    return Page('<div class="photo-space"></div><p class="photo-cap">For a photograph, a drawing, or anything else.</p>', 'photo-page')
+    return Page(f'<div class="photo-space"></div><p class="photo-cap">{esc(_L["photo"])}</p>', 'photo-page')
 
 def slot(label, w='100%'):
     return f'<div class="slot" style="width:{w}"><div class="slot-line"></div><p class="slot-label">{esc(label)}</p></div>'
 
 def family_tree_pages(instr):
-    v = ('<h2 class="sp-head">Family tree</h2><p class="sp-instr">' + esc(instr) + '</p>'
+    L = _L; nb = L['name_born']
+    v = (f'<h2 class="sp-head">{esc(L["tree"])}</h2><p class="sp-instr">' + esc(instr) + '</p>'
          '<div class="tree">'
-         '<p class="tier">Their parents</p><div class="row">' + slot('name') + slot('name') + slot('name') + slot('name') + '</div>'
-         '<p class="tier">My grandparents</p><div class="row">' + slot('name, born') + slot('name, born') + slot('name, born') + slot('name, born') + '</div>'
-         '<p class="tier">My parents</p><div class="row wide">' + slot('name, born') + slot('name, born') + '</div>'
-         '<p class="tier">Me</p><div class="row one">' + slot('name, born') + '</div>'
-         '<p class="tier">My brothers and sisters</p><div class="row">' + ''.join(slot('name, born') for _ in range(4)) + '</div>'
-         '<p class="tier">Others who counted as family</p><div class="row">' + ''.join(slot('name, who they were') for _ in range(4)) + '</div>'
+         f'<p class="tier">{esc(L["t_their"])}</p><div class="row">' + ''.join(slot(L['name']) for _ in range(4)) + '</div>'
+         f'<p class="tier">{esc(L["t_gp"])}</p><div class="row">' + ''.join(slot(nb) for _ in range(4)) + '</div>'
+         f'<p class="tier">{esc(L["t_p"])}</p><div class="row wide">' + slot(nb) + slot(nb) + '</div>'
+         f'<p class="tier">{esc(L["t_me"])}</p><div class="row one">' + slot(nb) + '</div>'
+         f'<p class="tier">{esc(L["t_sib"])}</p><div class="row">' + ''.join(slot(nb) for _ in range(4)) + '</div>'
+         f'<p class="tier">{esc(L["t_oth"])}</p><div class="row">' + ''.join(slot(L['name_who']) for _ in range(4)) + '</div>'
          '</div>')
-    r = ('<h2 class="sp-head">And where it went</h2><p class="sp-instr">Add anyone the boxes leave out. Draw lines however you like.</p>'
+    t2 = {'en': ('Me, and the person I built a life with', 'Children', 'Grandchildren', 'And after that'), 'es': ('Yo, y la persona con quien hice mi vida', 'Hijos', 'Nietos', 'Y después')}[_args.lang]
+    r = (f'<h2 class="sp-head">{esc(L["tree2"])}</h2><p class="sp-instr">{esc(L["tree_sub2"])}</p>'
          '<div class="tree">'
-         '<p class="tier">Me, and the person I built a life with</p><div class="row wide">' + slot('name, born') + slot('name, born') + '</div>'
-         '<p class="tier">Children</p><div class="row">' + ''.join(slot('name, born') for _ in range(4)) + '</div>'
-         '<p class="tier">Grandchildren</p><div class="row">' + ''.join(slot('name, born') for _ in range(4)) + '</div><div class="row">' + ''.join(slot('name, born') for _ in range(4)) + '</div>'
-         '<p class="tier">And after that</p><div class="row">' + ''.join(slot('') for _ in range(4)) + '</div>'
+         f'<p class="tier">{esc(t2[0])}</p><div class="row wide">' + slot(nb) + slot(nb) + '</div>'
+         f'<p class="tier">{esc(t2[1])}</p><div class="row">' + ''.join(slot(nb) for _ in range(4)) + '</div>'
+         f'<p class="tier">{esc(t2[2])}</p><div class="row">' + ''.join(slot(nb) for _ in range(4)) + '</div><div class="row">' + ''.join(slot(nb) for _ in range(4)) + '</div>'
+         f'<p class="tier">{esc(t2[3])}</p><div class="row">' + ''.join(slot('') for _ in range(4)) + '</div>'
          '</div>')
     return [Page(v, 'special-page'), Page(r, 'special-page')]
 
@@ -215,42 +240,42 @@ def important_people_pages(instr):
     def rows(n):
         s = ''
         for _ in range(n):
-            s += ('<div class="person"><div class="pl"><span class="pl-label">Name</span><div class="slot-line"></div></div>'
-                  '<div class="pl"><span class="pl-label">Who they were to me</span><div class="slot-line"></div></div>'
-                  '<div class="pl"><span class="pl-label">One line I\'d want you to know</span><div class="slot-line"></div></div></div>')
+            s += (f'<div class="person"><div class="pl"><span class="pl-label">{esc(_L["p_name"])}</span><div class="slot-line"></div></div>'
+                  f'<div class="pl"><span class="pl-label">{esc(_L["p_who"])}</span><div class="slot-line"></div></div>'
+                  f'<div class="pl"><span class="pl-label">{esc(_L["p_line"])}</span><div class="slot-line"></div></div></div>')
         return s
-    v = '<h2 class="sp-head">The important people</h2><p class="sp-instr">' + esc(instr) + '</p><div class="people">' + rows(4) + '</div>'
+    v = f'<h2 class="sp-head">{esc(_L["people"])}</h2><p class="sp-instr">' + esc(instr) + '</p><div class="people">' + rows(4) + '</div>'
     r = '<div class="people top">' + rows(5) + '</div>'
     return [Page(v, 'special-page'), Page(r, 'special-page')]
 
 def sayings_page(instr):
-    b = '<h2 class="sp-head">Family sayings</h2><p class="sp-instr">' + esc(instr) + '</p><div class="sayings">'
+    b = f'<h2 class="sp-head">{esc(_L["sayings"])}</h2><p class="sp-instr">' + esc(instr) + '</p><div class="sayings">'
     for _ in range(7):
-        b += ('<div class="saying"><div class="pl"><span class="pl-label">We always said</span><div class="slot-line"></div></div>'
-              '<div class="pl"><span class="pl-label">What it meant</span><div class="slot-line"></div></div></div>')
+        b += (f'<div class="saying"><div class="pl"><span class="pl-label">{esc(_L["s_said"])}</span><div class="slot-line"></div></div>'
+              f'<div class="pl"><span class="pl-label">{esc(_L["s_meant"])}</span><div class="slot-line"></div></div></div>')
     b += '</div>'
     return Page(b, 'special-page')
 
 def songs_page(instr):
-    b = '<h2 class="sp-head">The songs</h2><p class="sp-instr">' + esc(instr) + '</p><div class="sayings">'
+    b = f'<h2 class="sp-head">{esc(_L["songs"])}</h2><p class="sp-instr">' + esc(instr) + '</p><div class="sayings">'
     for _ in range(7):
-        b += ('<div class="saying"><div class="pl"><span class="pl-label">Title, and who sang it</span><div class="slot-line"></div></div>'
-              '<div class="pl"><span class="pl-label">Why</span><div class="slot-line"></div></div></div>')
+        b += (f'<div class="saying"><div class="pl"><span class="pl-label">{esc(_L["so_title"])}</span><div class="slot-line"></div></div>'
+              f'<div class="pl"><span class="pl-label">{esc(_L["so_why"])}</span><div class="slot-line"></div></div></div>')
     b += '</div>'
     return Page(b, 'special-page')
 
 def recipe_pages(instr):
-    v = ('<h2 class="sp-head">The recipe</h2><p class="sp-instr">' + esc(instr) + '</p>'
-         '<div class="pl"><span class="pl-label">What it\'s called</span><div class="slot-line"></div></div>'
-         '<div class="pl"><span class="pl-label">Who taught it to me</span><div class="slot-line"></div></div>'
-         '<p class="tier mt">What goes in it</p>' + lines_block('short'))
-    r = ('<p class="tier top">How to make it</p>' + lines_block('') +
-         '<p class="tier mt">The part that isn\'t written down anywhere</p><div class="qlines three"></div>')
+    v = (f'<h2 class="sp-head">{esc(_L["recipe"])}</h2><p class="sp-instr">' + esc(instr) + '</p>'
+         f'<div class="pl"><span class="pl-label">{esc(_L["r_called"])}</span><div class="slot-line"></div></div>'
+         f'<div class="pl"><span class="pl-label">{esc(_L["r_who"])}</span><div class="slot-line"></div></div>'
+         f'<p class="tier mt">{esc(_L["r_in"])}</p>' + lines_block('short'))
+    r = (f'<p class="tier top">{esc(_L["r_how"])}</p>' + lines_block('') +
+         f'<p class="tier mt">{esc(_L["r_part"])}</p><div class="qlines three"></div>')
     return [Page(v, 'special-page recipe'), Page(r, 'special-page recipe')]
 
 def decades_page(instr):
-    rows = ['Before I was ten', 'My teens', 'My twenties', 'My thirties', 'My forties', 'My fifties', 'My sixties', 'My seventies', 'After that', 'Now']
-    b = '<h2 class="sp-head">My life, a line at a time</h2><p class="sp-instr">' + esc(instr) + '</p><div class="decades">'
+    rows = _L['dec']
+    b = f'<h2 class="sp-head">{esc(_L["decades"])}</h2><p class="sp-instr">' + esc(instr) + '</p><div class="decades">'
     for r in rows:
         b += f'<div class="pl"><span class="pl-label">{esc(r)}</span><div class="slot-line"></div></div>'
     b += '</div>'
@@ -352,7 +377,7 @@ def changelog_page(heading):
 def letter_pages(heading, n):
     out = []
     first = (f'<div class="prompt-head letter-head"><h2 class="prompt">{esc(heading)}</h2>'
-             '<div class="pl to"><span class="pl-label">To</span><div class="slot-line"></div></div></div>' + lines_block())
+             f'<div class="pl to"><span class="pl-label">{esc(_L["to"])}</span><div class="slot-line"></div></div></div>' + lines_block())
     out.append(Page(first, 'prompt-page letter-page'))
     for _ in range(n - 1):
         out.append(Page(lines_block('full'), 'prompt-page letter-page cont'))
@@ -370,12 +395,12 @@ def text_page(kind, lines):
     if kind == 'copyright':
         return Page('<div class="copyright">' + ''.join(f'<p>{esc(p)}</p>' for p in ps) + '</div>', 'front', folio=False)
     if kind == 'given':
-        b = ('<div class="given"><p class="given-lead">This book was given to</p><div class="slot-line big"></div>'
-             '<div class="two-col"><div class="pl"><span class="pl-label">by</span><div class="slot-line"></div></div>'
-             '<div class="pl"><span class="pl-label">on</span><div class="slot-line"></div></div></div>'
-             '<p class="given-lead mt">Because</p><div class="qlines three"></div>'
-             '<div class="given-self"><p class="given-lead small">If you bought this book for yourself:</p>'
-             '<p class="given-lead">This book belongs to</p><div class="slot-line big"></div></div></div>')
+        b = (f'<div class="given"><p class="given-lead">{esc(_L["given_to"])}</p><div class="slot-line big"></div>'
+             f'<div class="two-col"><div class="pl"><span class="pl-label">{esc(_L["by"])}</span><div class="slot-line"></div></div>'
+             f'<div class="pl"><span class="pl-label">{esc(_L["on"])}</span><div class="slot-line"></div></div></div>'
+             f'<p class="given-lead mt">{esc(_L["because"])}</p><div class="qlines three"></div>'
+             f'<div class="given-self"><p class="given-lead small">{esc(_L["self_intro"])}</p>'
+             f'<p class="given-lead">{esc(_L["belongs"])}</p><div class="slot-line big"></div></div></div>')
         return Page(b, 'front given-page', folio=False)
     if kind == 'letter-opening':
         b = f'<h2 class="fm-head">{esc(ps[0])}</h2><div class="fm-text">' + ''.join(f'<p>{esc(p)}</p>' for p in ps[1:]) + '</div>'
@@ -401,8 +426,8 @@ def text_page(kind, lines):
         b = f'<h2 class="fm-head small">{esc(ps[0])}</h2><div class="hand">'
         for p in ps[1:-1]:
             b += f'<p class="stem">{esc(p)}</p><div class="qlines two"></div>'
-        b += ('<div class="two-col sig"><div class="pl"><span class="pl-label">Signed</span><div class="slot-line"></div></div>'
-              '<div class="pl"><span class="pl-label">Date</span><div class="slot-line"></div></div></div></div>')
+        b += (f'<div class="two-col sig"><div class="pl"><span class="pl-label">{esc(_L["signed"])}</span><div class="slot-line"></div></div>'
+              f'<div class="pl"><span class="pl-label">{esc(_L["date"])}</span><div class="slot-line"></div></div></div></div>')
         return Page(b, 'special-page hand-page')
     if kind == 'for-the-reader':
         b = f'<div class="reader"><p class="reader-head">{esc(ps[0])}</p>' + ''.join(f'<p>{esc(p)}</p>' for p in ps[1:]) + '</div>'
@@ -429,9 +454,7 @@ def text_page(kind, lines):
 
 # ---------- layout ----------
 items = parse(MS)
-ROMAN = {'PART ONE':'Part One','PART TWO':'Part Two','PART THREE':'Part Three','PART FOUR':'Part Four','PART FIVE':'Part Five',
-         'PART SIX':'Part Six','PART SEVEN':'Part Seven','PART EIGHT':'Part Eight','PART NINE':'Part Nine','PART TEN':'Part Ten',
-         'PART ELEVEN':'Part Eleven','PART TWELVE':'Part Twelve','PART THIRTEEN':'Part Thirteen'}
+ROMAN = _L['parts']
 
 for it in items:
     k, a, ls = it['kind'], it['arg'], it['lines']
@@ -443,10 +466,9 @@ for it in items:
         if a in ('half-title','title','giver-note','letter-opening','permission','contents','in-my-own-hand','rules'):
             ensure_recto()
         add(pg)
-        if a == 'letter-opening': contents.append(('', 'This book is yours', pg.num))
-        if a == 'howto': contents.append(('', 'How to use this book', pg.num))
-        if a == 'ten': contents.append(('', 'If you only fill out ten pages', pg.num))
-        if a == 'in-my-own-hand': contents.append(('', 'In my own hand', pg.num))
+        if a in ('letter-opening', 'howto', 'ten', 'in-my-own-hand'):
+            head = paras(ls)[0] if paras(ls) else a
+            contents.append(('', head.rstrip('.'), pg.num))
     elif k == 'opener':
         label, _, title = a.partition('|')
         label, title = label.strip(), title.strip()
@@ -560,7 +582,7 @@ for it in items:
 
 # ---------- substitutions ----------
 def contents_html():
-    b = '<h2 class="fm-head small">Contents</h2><div class="toc">'
+    b = f'<h2 class="fm-head small">{esc(_L["contents"])}</h2><div class="toc">'
     for label, title, num in contents:
         if label:
             b += f'<p class="toc-part"><span class="toc-label">{esc(label)}</span><span class="toc-title">{esc(title)}</span><span class="toc-num">{num}</span></p>'
@@ -592,7 +614,7 @@ def index_pages():
     for ci, chunk in enumerate(chunks):
         half = (len(chunk) + 1) // 2
         cols = [chunk[:half], chunk[half:]]
-        b = '<h2 class="fm-head small">Where to find things</h2>' if ci == 0 else ''
+        b = f'<h2 class="fm-head small">{esc(_L["index"])}</h2>' if ci == 0 else ''
         b += '<div class="index-cols">'
         for col in cols:
             b += '<div class="index-col">'
