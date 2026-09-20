@@ -18,6 +18,7 @@ _ap.add_argument('--html-only', action='store_true')
 _ap.add_argument('--trim-w', type=float, default=7.0); _ap.add_argument('--trim-h', type=float, default=10.0)
 _ap.add_argument('--extra-css', default=None)
 _ap.add_argument('--lang', default='en')
+_ap.add_argument('--photo-fill', action='store_true', help='use a photo page instead of a blank when a page is needed for recto/verso alignment inside the parts')
 _args = _ap.parse_args()
 _L = {
  'en': dict(family_h='A question from your family.', family_sub='Written by the person who gave you this book.', their_q='Their question',
@@ -167,10 +168,16 @@ def add(page):
 def is_recto(): return (len(pages) + 1) % 2 == 1
 def blank():
     add(Page('', 'blank', folio=False))
+def _filler():
+    # inside the parts, an alignment page can carry the photo caption instead of being empty
+    if _args.photo_fill and part_title:
+        add(photo_page())
+    else:
+        blank()
 def ensure_recto():
-    if not is_recto(): blank()
+    if not is_recto(): _filler()
 def ensure_verso():
-    if is_recto(): blank()
+    if is_recto(): _filler()
 
 def lines_block(extra_cls=''):
     return f'<div class="lines {extra_cls}"></div>'
