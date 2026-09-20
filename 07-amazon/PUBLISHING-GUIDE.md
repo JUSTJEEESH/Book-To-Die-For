@@ -85,6 +85,24 @@ document. Field by field:
 | Keywords | The seven backend keyword strings from the listing document, one per box |
 | Adult content | No |
 
+**"Does your book classify as any of these types?" (low-content, large-print).** Leave both unchecked.
+
+- *Large-print* means the book's text is 16 point or larger throughout. Our prompts are 21 point but
+  the introductions, letters, and front matter are 12.5 to 13 point, so the book does not qualify.
+  Checking it would add a "Large Print" label the book can't honor.
+- *Low-content* is defined by KDP as "minimal or no content on the interior pages, generally
+  repetitive, and designed to be filled in." KDP's examples include prompt journals, so read this
+  carefully. Checking it removes four things this launch depends on: the free KDP ISBN, Expanded
+  Distribution, series creation (the Words to Keep series page), and Look Inside unless you supply
+  your own ISBN. This book has about 3,800 words of original written text: thirteen section essays,
+  an opening letter, a giver's guide, instructions, 202 individually written prompts with sub-lines,
+  and an index. It is not repetitive and not minimal, and comparable guided journals on Amazon
+  carry Look Inside and series pages as ordinary books. Leave it unchecked.
+- If KDP's review disagrees and asks you to reclassify it as low-content, the fallback is: buy one
+  ISBN from Bowker (myidentifiers.com) so Look Inside stays on, accept that Expanded Distribution
+  and the series page are unavailable, and republish. Tell me if that happens and I will adjust the
+  copyright page and the launch plan.
+
 **The AI content question.** KDP asks whether AI tools were used to create the text, images, or
 translations, and distinguishes "AI-generated" (created by an AI tool, even if edited afterward)
 from "AI-assisted" (you wrote it, AI helped edit or check). Answer it truthfully: the prompts and
