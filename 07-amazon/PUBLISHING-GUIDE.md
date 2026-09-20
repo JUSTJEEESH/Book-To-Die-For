@@ -174,13 +174,14 @@ the book is live. The product page appears without images or reviews for the fir
 1. On the Bookshelf, under the paperback, choose **Create hardcover**. KDP copies the details; check them.
 2. Print options: Black & white, cream, 7 x 10, no bleed, matte.
 3. ISBN: assign a free KDP ISBN for the hardcover (it gets its own).
-4. **Cover:** open KDP's Cover Calculator for Hardcover, Black & white, Cream, 7 x 10, 254 pages, and
-   download the template. Read the numbers it gives for spine width and the wrap allowance, and send
-   them back here. The cover will be rebuilt to those numbers with:
+4. **Cover:** upload `06-cover/build/hardcover-wrap.pdf`. It is built to KDP's calculator numbers
+   for Hardcover, Black & white, Cream, 7 x 10, 254 pages: full cover 16.399 x 11.417 in, panels
+   7.197 x 10.236, wrap 0.591, hinge 0.394, spine 0.824 with a 0.699 safe area, margin 0.125.
+   If the calculator ever shows different numbers (a page-count change), rebuild with:
    ```
-   python3 06-cover/build_cover.py --no-concepts --name hardcover-wrap --spine <KDP spine> --wrap <KDP wrap>
+   python3 06-cover/build_cover.py --no-concepts --hardcover --full-w <full width> --full-h <full height> --panel-w <front cover width> --panel-h <front cover height> --hinge <hinge> --hc-spine <spine> --hc-wrap <wrap>
    ```
-   Hardcover wraps are larger than paperback covers because the cover folds around a board. Do not upload the paperback wrap to the hardcover.
+   The script checks that two wraps plus two panels plus the spine equal the full width and stops if they don't.
 5. Upload the same interior PDF. Preview. Order a proof. Price at **$28.99**. Publish.
 
 KDP links the two formats on one product page automatically when title, author, and subtitle match.

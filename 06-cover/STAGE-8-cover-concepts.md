@@ -51,17 +51,22 @@ spine edges as required.
 Ink ground. Back copy in cream (Stage 9). Barcode reserve: a white 2 x 1.2 in box at the lower right,
 0.35 in from the trim, which KDP fills with the ISBN barcode. Imprint at lower left.
 
-## Hardcover
+## Hardcover (built)
 
-Same artwork. KDP case-laminate hardcover uses a different wrap size (wider spine, wraparound flaps of
-0.75 in on all sides). Regenerate the wrap using KDP's hardcover template dimensions at upload; the
-build script takes the spine width and bleed as variables.
+KDP's case-laminate wrap for 254 pages, cream, 7 x 10: full cover 16.399 x 11.417 in. From the left:
+wrap 0.591, back panel 7.197 (the 0.394 nearest the spine is the hinge), spine 0.824 (safe area
+0.699 x 9.986), front panel 7.197 (hinge first, then the 6.803 board face), wrap 0.591. The front
+design is set on the 6.803 x 10.236 board face with 0.62 in side padding, so nothing sits in the hinge
+or within 0.125 in of the wrap line. Barcode reserve: 2 x 1.2 in, 0.25 in from the hinge and 0.375 in
+above the bottom wrap line, per the calculator. Ink ground runs under the wraps so no white shows
+at the folds.
 
 ## File spec
 
 | File | Size | Use |
 |---|---|---|
 | `build/paperback-wrap.pdf` | 14.885 x 10.25 in, single page, fonts embedded | Upload as the paperback cover |
+| `build/hardcover-wrap.pdf` | 16.399 x 11.417 in, single page, fonts embedded | Upload as the hardcover cover |
 | `build/concept-B-ink.png` | 7 x 10 in at 192 dpi | Reference and listing mock-ups |
 | `build/concept-A-bone.png`, `build/concept-C-rules.png` | same | Alternatives, kept for the record |
 
