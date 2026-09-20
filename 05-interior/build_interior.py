@@ -9,9 +9,15 @@ by this script, so the PDF is exactly what KDP receives. Page 1 is a recto.
 """
 import re, sys, os, html, subprocess, shutil
 
+import argparse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MS = os.path.join(ROOT, '04-manuscript', 'MANUSCRIPT.md')
-OUT = os.path.join(ROOT, '05-interior', 'build')
+_ap = argparse.ArgumentParser()
+_ap.add_argument('--manuscript', default=os.path.join(ROOT, '04-manuscript', 'MANUSCRIPT.md'))
+_ap.add_argument('--out', default=os.path.join(ROOT, '05-interior', 'build'))
+_ap.add_argument('--html-only', action='store_true')
+_args = _ap.parse_args()
+MS = os.path.abspath(_args.manuscript)
+OUT = os.path.abspath(_args.out)
 CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
 
 # ---------- parse ----------
@@ -60,6 +66,7 @@ contents = []          # (label, title, pagenum)
 ten_targets = []       # prompt texts for "ten pages" lookup
 prompt_index = {}      # prompt text -> page number
 index_entries = []     # (part_title, text, page)
+story_pages_list = []  # first page of each story spread
 
 def add(page):
     page.num = len(pages) + 1
@@ -182,6 +189,49 @@ def decades_page(instr):
     b += '</div>'
     return Page(b, 'special-page decades-page')
 
+def drawbox(caption='Drawn by', h='flex: 1 1 auto; min-height: 60mm'):
+    return f'<div class="drawbox" style="{h}"><span class="draw-cap">{esc(caption)}</span></div>'
+
+def cast_page():
+    b = ('<div class="cast-fields">'
+         '<div class="pl"><span class="pl-label">Name</span><div class="slot-line"></div></div>'
+         '<div class="pl"><span class="pl-label">What they are</span><div class="slot-line"></div></div>'
+         '<div class="pl"><span class="pl-label">What they always say</span><div class="slot-line"></div></div>'
+         '<div class="pl"><span class="pl-label">The trouble they always get into</span><div class="slot-line"></div></div>'
+         '<div class="pl"><span class="pl-label">Who they are secretly based on</span><div class="slot-line"></div></div>'
+         '</div>' + drawbox('Drawn by', 'flex: 1 1 auto; min-height: 70mm; margin-top: 5mm'))
+    return Page(b, 'special-page cast-page')
+
+def places_page(instr):
+    b = '<h2 class="sp-head">Where the stories happened</h2><p class="sp-instr">' + esc(instr) + '</p>' + drawbox('', 'height: 95mm') + '<div class="lines short" style="margin-top:6mm"></div>'
+    return Page(b, 'special-page')
+
+def startend_page(lines_):
+    b = '<h2 class="sp-head">How we started, how we ended</h2><div style="margin-top:6mm">'
+    for lab in [l.strip() for l in lines_ if l.strip()]:
+        b += f'<p class="stem" style="font-size:14pt;margin:5mm 0 1mm 0">{esc(lab)}</p><div class="qlines three"></div>'
+    b += '</div>'
+    return Page(b, 'special-page')
+
+def story_pages():
+    left = ('<div class="story-head">'
+            '<div class="pl"><span class="pl-label">Title</span><div class="slot-line big"></div></div>'
+            '<div class="two-col" style="margin-top:2mm"><div class="pl"><span class="pl-label">First told</span><div class="slot-line"></div></div>'
+            '<div class="pl"><span class="pl-label">Told to</span><div class="slot-line"></div></div></div>'
+            '<div class="tally"><span class="pl-label">Times asked for</span><div class="boxes">' + ''.join('<span class="box"></span>' for _ in range(12)) + '</div></div>'
+            '</div>' + lines_block())
+    right = lines_block('full') + drawbox('Drawn by', 'height: 62mm; margin-top: 5mm')
+    return [Page(left, 'prompt-page story-page'), Page(right, 'prompt-page story-page cont')]
+
+def longstory_pages(heading, sub, n):
+    out = []
+    first = (f'<div class="prompt-head"><h2 class="prompt">{esc(heading)}</h2>' + (f'<p class="sub">{esc(sub)}</p>' if sub else '') + '</div>' + lines_block())
+    out.append(Page(first, 'prompt-page'))
+    for i in range(n - 1):
+        body = lines_block('full') if i < n - 2 else (lines_block('full') + drawbox('Drawn by', 'height: 55mm; margin-top: 5mm'))
+        out.append(Page(body, 'prompt-page cont'))
+    return out
+
 def letter_pages(heading, n):
     out = []
     first = (f'<div class="prompt-head letter-head"><h2 class="prompt">{esc(heading)}</h2>'
@@ -242,6 +292,18 @@ def text_page(kind, lines):
         return Page(b, 'reader-page', folio=False)
     if kind == 'index':
         return Page('{{INDEX}}', 'front fm index-page')
+    if kind == 'storylist':
+        return Page('{{STORYLIST}}', 'front fm index-page')
+    if kind == 'storyteller':
+        nl = [l.strip() for l in lines if l.strip()]
+        b = '<div class="given" style="padding-top:0.6in">'
+        for lab in nl:
+            b += f'<p class="given-lead">{esc(lab)}</p><div class="slot-line big"></div><div style="height:7mm"></div>'
+        b += '</div>'
+        return Page(b, 'front given-page', folio=False)
+    if kind == 'rules':
+        b = f'<h2 class="fm-head small">{esc(ps[0])}</h2><div class="fm-text"><p class="fm-lead">{esc(ps[1])}</p>' + ''.join(f'<p class="rule-line">{esc(x)}</p>' for x in ps[2:]) + '</div>'
+        return Page(b, 'front fm')
     if kind == 'anything-else':
         return Page(f'<div class="prompt-head"><h2 class="prompt">{esc(ps[0])}</h2></div>' + lines_block(), 'prompt-page')
     if kind == 'blank':
@@ -259,9 +321,9 @@ for it in items:
     if k == 'page':
         if a == 'blank':
             blank(); continue
-        if a in ('in-my-own-hand','for-the-reader','anything-else'): part_title = None
+        if a in ('in-my-own-hand','for-the-reader','anything-else','storylist'): part_title = None
         pg = text_page(a, ls)
-        if a in ('half-title','title','giver-note','letter-opening','permission','contents','in-my-own-hand'):
+        if a in ('half-title','title','giver-note','letter-opening','permission','contents','in-my-own-hand','rules'):
             ensure_recto()
         add(pg)
         if a == 'letter-opening': contents.append(('', 'This book is yours', pg.num))
@@ -299,7 +361,7 @@ for it in items:
         add(photo_page())
     elif k == 'special':
         instr = ' '.join(paras(ls))
-        names = {'family-tree':'Family tree','important-people':'The important people','family-sayings':'Family sayings','decades':'My life, a line at a time','songs':'The songs','recipe':'The recipe'}
+        names = {'family-tree':'Family tree','important-people':'The important people','family-sayings':'Family sayings','decades':'My life, a line at a time','songs':'The songs','recipe':'The recipe','places':'Where the stories happened','startend':'How we started, how we ended'}
         start = len(pages) + 1
         if a == 'family-tree':
             ensure_verso(); start = len(pages) + 1; [add(p) for p in family_tree_pages(instr)]
@@ -307,11 +369,29 @@ for it in items:
             ensure_verso(); start = len(pages) + 1; [add(p) for p in important_people_pages(instr)]
         elif a == 'family-sayings': add(sayings_page(instr))
         elif a == 'decades': add(decades_page(instr))
+        elif a == 'places': add(places_page(instr))
+        elif a == 'startend': add(startend_page(ls))
         elif a == 'songs': add(songs_page(instr))
         elif a == 'recipe':
             ensure_verso(); start = len(pages) + 1; [add(p) for p in recipe_pages(instr)]
         else: raise ValueError(a)
         index_entries.append((part_title, names[a], start))
+    elif k == 'cast':
+        add(cast_page())
+    elif k == 'story':
+        ensure_verso()
+        pg = add(story_pages()[0]); story_pages_list.append(pg.num)
+        add(story_pages()[1])
+    elif k == 'longstory':
+        heading, _, n = a.partition('|')
+        heading, n = heading.strip(), int(n.strip() or 2)
+        sub = ' '.join(paras(ls))
+        ensure_verso()
+        first = None
+        for p_ in longstory_pages(heading, sub, n):
+            q = add(p_); first = first or q
+        prompt_index[heading] = first.num
+        index_entries.append((part_title, heading, first.num))
     elif k == 'letter':
         heading, _, n = a.partition('|')
         heading, n = heading.strip(), int(n.strip() or 2)
@@ -384,7 +464,18 @@ for i, p in enumerate(pages):
         break
 if len(pages) % 2 == 1: blank()
 
+def storylist_html():
+    b = '<h2 class="fm-head small">The list</h2><p class="fm-lead" style="margin-bottom:6pt">Write each story\'s title next to its page, so anyone can find it again.</p><div class="index-cols">'
+    half = (len(story_pages_list) + 1) // 2
+    for col in (story_pages_list[:half], story_pages_list[half:]):
+        b += '<div class="index-col">'
+        for num in col:
+            b += f'<div class="sl-row"><span class="sl-num">{num}</span><div class="slot-line" style="flex:1 1 auto;height:6.2mm"></div></div>'
+        b += '</div>'
+    return b + '</div>'
+
 for p in pages:
+    if '{{STORYLIST}}' in p.body: p.body = p.body.replace('{{STORYLIST}}', storylist_html())
     if '{{CONTENTS}}' in p.body: p.body = p.body.replace('{{CONTENTS}}', contents_html())
     p.body = re.sub(r'\{\{TEN:(.*?)\}\}', lambda m: ten_lookup(html.unescape(m.group(1))), p.body)
 
@@ -433,7 +524,7 @@ print(f'pages: {len(pages)}')
 for label, title, num in contents:
     print(f'  {num:>4}  {label} {title}')
 
-if '--html-only' not in sys.argv:
+if not _args.html_only:
     pdf_path = os.path.join(OUT, 'interior.pdf')
     r = subprocess.run([CHROME, '--headless', '--no-sandbox', '--disable-gpu', '--no-pdf-header-footer',
                         '--run-all-compositor-stages-before-draw', '--virtual-time-budget=10000',

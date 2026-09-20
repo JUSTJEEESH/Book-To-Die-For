@@ -16,22 +16,25 @@ ap.add_argument('--full-w', type=float, default=16.399); ap.add_argument('--full
 ap.add_argument('--panel-w', type=float, default=7.197); ap.add_argument('--panel-h', type=float, default=10.236)
 ap.add_argument('--hinge', type=float, default=0.394); ap.add_argument('--margin', type=float, default=0.125)
 ap.add_argument('--hc-spine', type=float, default=0.824); ap.add_argument('--hc-wrap', type=float, default=0.591)
+ap.add_argument('--title', default='What I Want You to Know'); ap.add_argument('--tag', default='My stories. My memories. My words.')
+ap.add_argument('--back', default=None, help='path to back cover copy text file'); ap.add_argument('--ink', default='#1e2838', help='ground color hex')
+ap.add_argument('--out-dir', default=None, help='output folder (default 06-cover/build)')
 args = ap.parse_args()
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, '06-cover', 'build')
+OUT = os.path.abspath(args.out_dir) if args.out_dir else os.path.join(ROOT, '06-cover', 'build')
 CHROME = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
 FONTS = open(os.path.join(ROOT, '05-interior', 'fonts', 'fonts.css')).read()
 os.makedirs(OUT, exist_ok=True)
 if os.path.isdir(os.path.join(OUT, 'fonts')): shutil.rmtree(os.path.join(OUT, 'fonts'))
 shutil.copytree(os.path.join(ROOT, '05-interior', 'fonts'), os.path.join(OUT, 'fonts'))
 
-TITLE = 'What I Want You to Know'
-TAG = 'My stories. My memories. My words.'
+TITLE = args.title
+TAG = args.tag
 AUTHOR = 'Joshua Caleb Green'
 IMPRINT = 'Words to Keep'
-BACK = open(os.path.join(ROOT, '06-cover', 'back-cover-copy.txt')).read().strip().split('\n\n')
+BACK = open(args.back or os.path.join(ROOT, '06-cover', 'back-cover-copy.txt')).read().strip().split('\n\n')
 
-INK = '#1e2838'; CREAM = '#efe7d6'; BONE = '#f3efe6'; CHAR = '#1b1b1b'
+INK = args.ink; CREAM = '#efe7d6'; BONE = '#f3efe6'; CHAR = '#1b1b1b'
 
 BASE_CSS = FONTS + """
 html,body{margin:0;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}

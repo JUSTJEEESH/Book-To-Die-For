@@ -17,6 +17,7 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 | `06-cover/` | Stage 8–9: cover concepts, final cover, back cover copy |
 | `07-amazon/` | Stage 10: listing copy, keywords, categories, launch and ad strategy |
 | `08-extensions/` | New book ideas, ranked, with research; future editions |
+| `09-portfolio/` | The four books after the flagship: briefs, manuscripts, builds, listings, cover prompts |
 
 ## Stage tracker
 

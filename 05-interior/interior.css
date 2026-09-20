@@ -143,3 +143,18 @@ ol.giver li::marker { color: #777; font-variant-numeric: oldstyle-nums; }
 .idx-item { display: flex; align-items: baseline; gap: 4pt; font-size: 8.6pt; line-height: 1.22; margin: 0 0 1.6pt 0; }
 .idx-t { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .idx-n { flex: 0 0 auto; color: #444; font-variant-numeric: oldstyle-nums; }
+
+/* ---- story book kinds ---- */
+.drawbox { position: relative; border: 0.75pt solid #b5b5b5; border-radius: 2pt; }
+.draw-cap { position: absolute; right: 2.5mm; bottom: 1.5mm; font-family: 'Inter', sans-serif; font-size: 7pt; letter-spacing: 0.14em; text-transform: uppercase; color: #999; }
+.cast-fields .pl { margin-bottom: 2.5mm; }
+.cast-fields .pl .slot-line { height: 8mm; }
+.story-head .pl.big { }
+.tally { margin-top: 3mm; }
+.tally .pl-label { display: block; margin-bottom: 1.5mm; }
+.boxes { display: flex; gap: 2.2mm; }
+.box { display: inline-block; width: 5.2mm; height: 5.2mm; border: 0.75pt solid #9c9c9c; border-radius: 1pt; }
+.story-page .lines { margin-top: 5mm; }
+.rule-line { font-size: 13.5pt; margin: 0 0 9pt 0; }
+.sl-row { display: flex; align-items: flex-end; gap: 4pt; margin: 0 0 3.2mm 0; }
+.sl-num { font-variant-numeric: oldstyle-nums; color: #555; font-size: 10.5pt; width: 8mm; flex: 0 0 auto; text-align: right; padding-bottom: 1pt; }
