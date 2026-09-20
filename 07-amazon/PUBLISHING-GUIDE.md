@@ -98,10 +98,19 @@ document. Field by field:
   an opening letter, a giver's guide, instructions, 202 individually written prompts with sub-lines,
   and an index. It is not repetitive and not minimal, and comparable guided journals on Amazon
   carry Look Inside and series pages as ordinary books. Leave it unchecked.
-- If KDP's review disagrees and asks you to reclassify it as low-content, the fallback is: buy one
-  ISBN from Bowker (myidentifiers.com) so Look Inside stays on, accept that Expanded Distribution
-  and the series page are unavailable, and republish. Tell me if that happens and I will adjust the
-  copyright page and the launch plan.
+- **What happened (September 2026):** KDP's reviewer classified the book as low-content and
+  checked the box during the hardcover submission. The paperback was already live. KDP's rules for a
+  low-content title, in any format: the free KDP ISBN is not available (choose "Use my own ISBN" or
+  "Publish without an ISBN"); no series page; no Expanded Distribution; and for a hardcover
+  published without an ISBN, no Look Inside and no back-cover thumbnail. KDP publishes no appeal
+  process for the classification.
+- **The path taken:** buy ISBNs from Bowker (myidentifiers.com), publisher name Words to Keep.
+  Assign one to the hardcover, open "Edit Hardcover Content," set Print ISBN to "Use my own ISBN,"
+  enter it with the imprint, and resubmit. Do not touch the live paperback. Keep a second ISBN in
+  reserve in case KDP later applies the same classification to the paperback; changing a live
+  book's ISBN means unpublishing and recreating it, so that is a last resort.
+- Stage 10 adjustments: the Words to Keep series page is unavailable for this title; Expanded
+  Distribution stays off; A+ Content, ads, and Author Central are unaffected.
 
 **The AI content question.** KDP asks whether AI tools were used to create the text, images, or
 translations, and distinguishes "AI-generated" (created by an AI tool, even if edited afterward)

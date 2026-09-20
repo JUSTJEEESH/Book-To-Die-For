@@ -8,7 +8,7 @@
 
 **Title:** What I Want You to Know
 **Subtitle:** A Guided Legacy Journal for Parents and Grandparents to Leave Their Stories, Memories, and Words to the People They Love
-**Series:** Words to Keep (Book 1)
+**Series:** Words to Keep (Book 1). Note: KDP classified the title as low-content at review, which makes it ineligible for a series page and for Expanded Distribution. The series name still appears on the cover, spine, and copyright page.
 **Author:** Joshua Caleb Green
 **Publisher (imprint):** Words to Keep
 
