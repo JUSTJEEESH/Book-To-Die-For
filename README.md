@@ -18,6 +18,7 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 | `07-amazon/` | Stage 10: listing copy, keywords, categories, launch and ad strategy |
 | `08-extensions/` | New book ideas, ranked, with research; future editions |
 | `09-portfolio/` | The four books after the flagship: briefs, manuscripts, builds, listings, cover prompts |
+| `marketing/` | The marketing war room: brand, content engine, series, hooks, AI video, ads, Amazon conversion, creators, workflows. Start at `marketing/LAUNCH_PLAN.md` |
 
 ## Stage tracker
 
@@ -33,6 +34,7 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 | 8 | Cover concepts | Complete (wrap built) |
 | 9 | Back cover | Complete |
 | 10 | Amazon listing and launch strategy | Complete |
+| 11 | Marketing war room and content engine | Built 2026-09-21 (`marketing/`); `/daily-marketing` and `/weekly-marketing` workflows |
 
 ## Working rules
 
