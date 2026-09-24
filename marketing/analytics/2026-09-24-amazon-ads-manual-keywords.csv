@@ -1,0 +1,37 @@
+﻿State,Keyword,Target match type,Status code,Status,Suggested bid (low)(USD),Suggested bid (median)(USD),Suggested bid (high)(USD),Bid (USD),Impressions,Top-of-search impression share,Clicks,CTR,Total cost (USD),CPC (USD),Purchases,Sales (USD),ACOS,KENP read,Estimated KENP royalties (USD)
+ENABLED,family legacy journal,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.31,0.41,0.51,0.55,1,0,0,0,0,0,0,0,0,0,0
+ENABLED,family legacy journal,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.31,0.41,0.51,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,family legacy journal,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.32,0.4,0.5,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,family memory journal,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.34,0.51,0.64,0.55,4,0,0,0,0,0,0,0,0,0,0
+ENABLED,family memory journal,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.34,0.5,0.63,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,family memory journal,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.35,0.64,0.84,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,grandparent legacy journal,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.93,1.24,1.44,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,grandparent legacy journal,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.42,0.67,0.86,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,grandparent legacy journal,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.41,0.67,0.86,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,grandparent memory book,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.58,0.77,0.96,0.55,17,0,0,0,0,0,0,0,0,0,0
+ENABLED,grandparent memory book,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.44,0.58,0.73,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,grandparent memory book,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.4,0.75,1.1,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.95,1.27,1.59,0.55,9,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.95,1.27,1.59,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.4,0.59,0.67,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal for grandparents,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.93,1.24,1.44,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal for grandparents,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,1.05,1.4,1.75,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal for grandparents,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,1.05,1.4,1.75,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal for parents,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.43,0.58,0.73,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal for parents,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.31,0.41,0.51,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,legacy journal for parents,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.32,0.41,0.51,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,life story journal,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.91,1.21,1.51,0.55,15,0,0,0,0,0,0,0,0,0,0
+ENABLED,life story journal,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.57,0.65,0.96,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,life story journal,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.52,0.61,0.69,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,memory book for grandparents,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.5,0.67,0.84,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,memory book for grandparents,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.51,0.68,0.85,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,memory book for grandparents,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.51,0.68,0.85,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,memory book for parents,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,1.2,1.6,1.8,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,memory book for parents,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.6,0.69,0.81,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,memory book for parents,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.61,0.78,1.13,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,parent legacy journal,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.43,0.58,0.73,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,parent legacy journal,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.43,0.58,0.73,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,parent legacy journal,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.32,0.37,0.46,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,parent memory book,Broad,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.46,0.61,0.76,0.55,1,0,0,0,0,0,0,0,0,0,0
+ENABLED,parent memory book,Phrase,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.58,0.82,1.19,0.55,0,0,0,0,0,0,0,0,0,0,0
+ENABLED,parent memory book,Exact,TARGETING_CLAUSE_STATUS_LIVE,Delivering,0.51,0.58,0.77,0.55,0,0,0,0,0,0,0,0,0,0,0
