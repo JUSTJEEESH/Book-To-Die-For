@@ -1,0 +1,5 @@
+﻿State,Automatic targeting groups,Target match type,Status code,Status,Suggested bid (low)(USD),Suggested bid (median)(USD),Suggested bid (high)(USD),Bid (USD),Impressions,Top-of-search impression share,Clicks,CTR,Total cost (USD),CPC (USD),Purchases,Sales (USD),ACOS,KENP read,Estimated KENP royalties (USD)
+ENABLED,close-match,—,TARGETING_CLAUSE_STATUS_LIVE,Delivering,,,,0.6,24,0,0,0,0,0,0,0,0,0,0
+ENABLED,complements,—,TARGETING_CLAUSE_STATUS_LIVE,Delivering,,,,0.2,9,0,0,0,0,0,0,0,0,0,0
+ENABLED,loose-match,—,TARGETING_CLAUSE_STATUS_LIVE,Delivering,,,,0.4,4,0,0,0,0,0,0,0,0,0,0
+ENABLED,substitutes,—,TARGETING_CLAUSE_STATUS_LIVE,Delivering,,,,0.4,1486,0,0,0,0.24,0,0,0,0,0,0
