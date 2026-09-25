@@ -2,14 +2,12 @@
 
 Written around the author's real family. Facts used: mother Denere, 64; stepfather Richard, 82;
 father Dennis, 64; his partner John, 67. Maternal grandparents Willamette and William. Dennis was
-raised by Dixie and Isaac after his mother, Mary, died very young; his father was Harold, about whom
-the family knows almost nothing. Dennis loves genealogy. The author wishes he had had a book like
-this for his grandparents.
+raised by Dixie and Isaac after his mother, Mary, died at eighteen; his father was Harold, about whom
+the family knows almost nothing. Dennis loves genealogy. All four grandparents have died. The author wishes he had had a book like this for them.
 
 Anything in **[square brackets]** is a detail only the author can supply. The rule for every
 bracket: if it is true, fill it in; if it is not, cut the sentence. No post below asserts anything
-about a relative that the author has not confirmed. Two facts to confirm before posting: Mary's age
-at death (the note said "18"), and which grandparents have died.
+about a relative that the author has not confirmed. Confirmed 2026-09-25: Mary died at eighteen; Willamette, William, Dixie, and Isaac have all died.
 
 The mechanism: the questions are the content. A real question in the right community gets hundreds
 of real answers, and the family's real story earns the right to mention the book where the rules
@@ -24,11 +22,11 @@ comments.
 **Title:** My dad's father was named Harold. That's most of what we know. Which living relative should I be asking, before I spend another year on records?
 **Body:**
 My dad is 64 and has been the family genealogist for as long as I can remember. He can tell you
-about people who died a century ago. But his own father is a name: Harold. His mother, Mary, died
-very young, and he was raised by his grandparents, Dixie and Isaac, who were his parents in every way
+about people who died a century ago. But his own father is a name: Harold. His mother, Mary, died at
+eighteen, and he was raised by his grandparents, Dixie and Isaac, who were his parents in every way
 that counted and my grandparents in every way that counted.
 
-Dixie and Isaac **[are gone / confirm]**. So is the generation that would have known Harold. I've
+Dixie and Isaac are gone. So is the generation that would have known Harold. I've
 started to think the best record I'll ever get isn't in an archive; it's whatever my dad remembers
 being told as a kid, and whatever my mom, 64, and my stepdad, 82, remember hearing.
 
@@ -59,7 +57,7 @@ this question gets something. Give me ammunition.
 **Title:** I have four parents between 64 and 82. What question actually got yours talking about their life?
 **Body:**
 Mom (64), stepdad (82), dad (64), and his partner (67). Four people, four lives, and I know the
-outline of each and the inside of none. My grandparents on both sides are **[gone / confirm]**, and I
+outline of each and the inside of none. My grandparents on both sides are gone, and I
 never asked them anything that mattered; I'd like to not do that four more times.
 
 Not looking for "record them on your phone" (though fair). Looking for the specific question that
@@ -92,7 +90,7 @@ out on purpose?
 Disclosure first: I made this book. It's called What I Want You to Know. Mods, if this doesn't fit,
 take it down and I'll understand.
 
-Why: my grandparents on both sides are **[gone / confirm]**, and the only thing I have of my dad's
+Why: my grandparents on both sides are gone, and the only thing I have of my dad's
 father is his first name. I have four parents still here, between 64 and 82, and I didn't want to
 make the same mistake four more times. Every journal I could find asked the same fifty questions
 ("what was your favorite food"), from the child's point of view. So I built one in the parent's
