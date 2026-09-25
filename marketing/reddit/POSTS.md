@@ -1,81 +1,102 @@
 # Reddit Posts
 
-Twelve posts in three tiers. Every one of them is true. Nothing here claims an experience the poster
-did not have; the placeholders in square brackets are for the poster's real details, and if a real
-detail does not exist, the sentence is cut, not invented.
+Written around the author's real family. Facts used: mother Denere, 64; stepfather Richard, 82;
+father Dennis, 64; his partner John, 67. Maternal grandparents Willamette and William. Dennis was
+raised by Dixie and Isaac after his mother, Mary, died very young; his father was Harold, about whom
+the family knows almost nothing. Dennis loves genealogy. The author wishes he had had a book like
+this for his grandparents.
 
-The mechanism is the book's own: the questions are the content. A good question posted in the right
-community produces hundreds of real answers, and those answers are the emotional proof no
-fabricated story could match. The book enters only where a community permits it, and always with
-the poster identified as the maker.
+Anything in **[square brackets]** is a detail only the author can supply. The rule for every
+bracket: if it is true, fill it in; if it is not, cut the sentence. No post below asserts anything
+about a relative that the author has not confirmed. Two facts to confirm before posting: Mary's age
+at death (the note said "18"), and which grandparents have died.
 
-Read `PLAYBOOK.md` for where each tier is allowed, how to disclose, and what to do in the comments.
+The mechanism: the questions are the content. A real question in the right community gets hundreds
+of real answers, and the family's real story earns the right to mention the book where the rules
+allow it. `PLAYBOOK.md` says where each tier is allowed, how to disclose, and what to do in the
+comments.
 
 ---
 
-## Tier 1: pure questions (no link, no book mentioned in the post)
+## Tier 1: questions with the author's real reason attached (no link; the book is not named)
 
-These are discussion posts. They are allowed nearly everywhere because they are exactly what those
-communities are for. The book's name appears nowhere in the post. If someone asks in the comments
-where the question came from, answer honestly ("it's from a book of questions I made for parents;
-happy to share the name if that's allowed here"), and let the moderators' rules decide the rest.
+### R-01 · r/Genealogy
+**Title:** My dad's father was named Harold. That's most of what we know. Which living relative should I be asking, before I spend another year on records?
+**Body:**
+My dad is 64 and has been the family genealogist for as long as I can remember. He can tell you
+about people who died a century ago. But his own father is a name: Harold. His mother, Mary, died
+very young, and he was raised by his grandparents, Dixie and Isaac, who were his parents in every way
+that counted and my grandparents in every way that counted.
 
-### R-01 · r/AskOldPeople
-**Title:** What did people in your family not talk about?
-**Body:** Not the big secret, necessarily. The thing that just never came up. The war, the money, the
-relative nobody mentioned, the year everyone skips over. Did you understand why at the time? Do you now?
+Dixie and Isaac **[are gone / confirm]**. So is the generation that would have known Harold. I've
+started to think the best record I'll ever get isn't in an archive; it's whatever my dad remembers
+being told as a kid, and whatever my mom, 64, and my stepdad, 82, remember hearing.
+
+So the question for this sub: when the paper trail is thin, how do you interview the living? What
+questions got your relatives talking when "tell me about your family" got a shrug?
 
 ### R-02 · r/AskOldPeople
 **Title:** Tell me about your mother, not as a mother.
-**Body:** What was she like as a person? What did she want, before you existed? What did she get away
-with? I've realized I can describe my own mother as a mother in detail and as a person barely at all.
+**Body:**
+What was she like as a person? What did she want, before you existed? What did she get away with?
+
+I asked myself this about my own mom (she's 64) and realized I can describe her as a mother in
+detail and as a person barely at all. **[One true sentence about something you recently learned
+about Denere as a person, or cut this paragraph.]**
 
 ### R-03 · r/AskOldPeople
 **Title:** What's the dumbest thing you did that you survived?
-**Body:** Asking for a reason: I'm trying to get my dad to write some of his down and he claims he
-doesn't have any stories. I don't believe him. Give me ammunition.
+**Body:**
+My dad is 64 and my stepdad is 82, and between them there have to be forty years of stories I've
+never heard because nobody asked the right way. "Tell me about your life" gets nothing. I'm betting
+this question gets something. Give me ammunition.
 
 ### R-04 · r/AskReddit
-**Title:** What's a question you wish you'd asked a parent or grandparent while you could?
-**Body:** (none; AskReddit is title-only)
+**Title:** What's a question you wish you'd asked a grandparent while you still could?
+**Body:** (title only)
 
-### R-05 · r/CasualConversation
-**Title:** The story your family tells at every gathering. Now the version that actually happened.
-**Body:** Every family has one. Ours is [real one-line example, or cut this sentence]. Who tells yours
-wrong, and what got left out on purpose?
+### R-05 · r/AgingParents
+**Title:** I have four parents between 64 and 82. What question actually got yours talking about their life?
+**Body:**
+Mom (64), stepdad (82), dad (64), and his partner (67). Four people, four lives, and I know the
+outline of each and the inside of none. My grandparents on both sides are **[gone / confirm]**, and I
+never asked them anything that mattered; I'd like to not do that four more times.
 
-### R-06 · r/AskOldPeople or r/GenX
+Not looking for "record them on your phone" (though fair). Looking for the specific question that
+worked. **[The one that worked on one of yours, if you have tried one; otherwise cut.]**
+
+### R-06 · r/CasualConversation
 **Title:** What's a phone number you still know by heart, and whose was it?
-**Body:** A childhood best friend's landline. A grandmother's. The pizza place. Do you still call them?
+**Body:**
+Mine is **[real one, or cut]**. My mom can still recite her childhood best friend's landline
+**[confirm or cut]**. Do you still call them?
 
-### R-07 · r/Genealogy
-**Title:** The questions I wish I'd asked the living before I started researching the dead
-**Body:** I've spent [real amount of time, or cut] on records, and the thing I keep running into is that
-the people who could have answered in one sentence are gone. What question would you go back and ask,
-if you could? I'll start: [a real one from the poster's own family, or cut and let the thread start
-itself].
+### R-07 · r/AskOldPeople
+**Title:** What did people in your family not talk about?
+**Body:**
+Not the big secret, necessarily. The thing that just never came up. In my dad's family it was his
+father, Harold. Not hidden, exactly. Just never discussed, and now there's almost no one left to
+ask. What was it in yours, and do you understand why now?
 
-### R-08 · r/AgingParents
-**Title:** Has anyone found a way to get a parent talking about their life that actually works?
-**Body:** Not the "tell me about your childhood" kind of question, which gets a shrug. The ones that
-get a real answer. The one that worked on my [dad/mom] was "[a real question that really worked, or
-cut]." What worked for you?
+### R-08 · r/GenX or r/AskOldPeople
+**Title:** The story your family tells at every gathering. What's the version that actually happened?
+**Body:**
+Every family has one. Ours is **[one true line, or cut]**. Who tells yours wrong, and what got left
+out on purpose?
 
 ## Tier 2: "I made this," disclosed (link only where the subreddit allows it)
 
-These posts say who made the book in the first line. They are for the subreddits whose rules allow
-makers to share their work, usually with a flair, in a weekly thread, or after the account has a
-history in the community. If the rules say no links, the post stands without one and the profile
-carries it.
-
-### R-09 · r/journaling (or its self-promo thread)
-**Title:** I made a guided journal for parents and grandparents because every one I could find asked the same fifty questions. Here are twenty of the ones that aren't in any of them.
+### R-09 · r/journaling (or its weekly self-promotion thread)
+**Title:** I made a guided journal for parents and grandparents because I never asked mine anything that mattered. Here are twenty of the questions.
 **Body:**
 Disclosure first: I made this book. It's called What I Want You to Know. Mods, if this doesn't fit,
 take it down and I'll understand.
 
-The idea: it's written in the parent's voice, not the child's. They fill it in by hand. It ends with
-letters. And instead of "what was your favorite food," it asks things like:
+Why: my grandparents on both sides are **[gone / confirm]**, and the only thing I have of my dad's
+father is his first name. I have four parents still here, between 64 and 82, and I didn't want to
+make the same mistake four more times. Every journal I could find asked the same fifty questions
+("what was your favorite food"), from the child's point of view. So I built one in the parent's
+voice, filled in by hand, that ends with letters. The questions are the point:
 
 - What did the kitchen smell like on an ordinary weeknight?
 - Tell me about your mother, not as a mother.
@@ -96,50 +117,65 @@ letters. And instead of "what was your favorite food," it asks things like:
 - What I hope you forgive me for.
 - Write a note to yourself at thirty.
 - Tell me about a kindness nobody saw.
-- One last letter. (Four pages. No prompt.)
+- One last letter. Four pages. No prompt.
 
-It's on Amazon as a paperback and hardcover, and the front of it says plainly that nobody finishes a
-book like this and ten pages is a treasure. Happy to answer anything about how it was built, and I'd
-genuinely like to know which of these you'd skip.
+It's on Amazon as a paperback and hardcover. The front of it says plainly that nobody finishes a
+book like this and ten pages is a treasure. I gave the first copies to **[whoever you actually gave
+them to, or cut]**. Happy to answer anything about how it was built, and I'd genuinely like to know
+which of these you'd skip.
 
-### R-10 · r/selfpublish or r/KDP (peer community; link allowed)
-**Title:** Launched a guided legacy journal on KDP. It got classified low-content at hardcover review after the paperback went live. Here's what that cost and what I'm doing about it.
-**Body:** [This one is written from the repo's real record: `07-amazon/PUBLISHING-GUIDE.md`, the
-low-content reclassification, the Bowker ISBN path, the loss of the series page and Expanded
-Distribution, the three-day ad data. Post the real numbers. This community rewards specifics and
-punishes vagueness. The book link is normal here.]
+### R-10 · r/selfpublish or r/KDP (peer community; link is normal here)
+**Title:** Launched a guided legacy journal on KDP. Got classified low-content at hardcover review after the paperback was live. What it cost, and the first ad numbers.
+**Body:** Written from the repo's real record: the low-content classification and what it removed
+(free ISBN, series page, Expanded Distribution), the Bowker ISBN path, the 7 x 10 print cost, the
+launch price, and the first three days of ads (24 cents spent, one click, bids under Amazon's floor).
+Post the real numbers; this community rewards specifics. Ask a real question at the end: what has
+worked for others in the guided-journal category with zero reviews.
 
-### R-11 · r/Genealogy (weekly promo or resources thread, if one exists; otherwise comment-only)
-**Title:** A fill-in book for the living relatives, since I kept finding I'd asked the dead ones everything and the living ones nothing
-**Body:** I made this and I'm saying so up front. [Real reason the maker built it, in one or two
-sentences, or cut.] It's a 7 x 10 book a parent or grandparent writes in by hand, in their own voice,
-202 prompts, one to a page, with a family tree, a decade timeline, a recipe page, and an index so
-anyone can find a page again. Link in my profile if the mods prefer it there.
+### R-11 · r/Genealogy (only in a promo or resources thread if one exists; otherwise comment-only)
+**Title:** I made a fill-in book for the living relatives, after realizing I'd researched the dead ones and asked the living ones nothing
+**Body:**
+I made this and I'm saying so up front. My dad is our family genealogist; his own father is a first
+name, Harold, and nothing else. That's the whole reason. It's a 7 x 10 book a parent or grandparent
+writes in by hand, in their own voice: 202 prompts, one to a page, a family tree, a decade timeline,
+a recipe page, "the year I was born," and an index so anyone can find a page again. Link in my
+profile if the mods prefer it there.
 
 ## Tier 3: replies, not posts
 
-Most of Reddit's value for this book is in the comments of threads that already exist. Every week,
-search these terms and answer where an answer is honestly useful: "questions to ask my grandma,"
-"memory journal for mom," "storyworth alternative," "dad won't talk about his life," "gift for
-parents who have everything," "how do I record my grandparents' stories."
+Most of Reddit's value for this book is in threads that already exist. Weekly, search: "questions to
+ask my grandma," "memory journal for mom," "dad won't talk about his life," "gift for parents who
+have everything," "how do I record my grandparents' stories," "storyworth alternative." Answer where
+an answer is honestly useful.
 
-### R-12 · The standard reply (adapt every time; never paste it twice)
-Two useful things first, then the disclosure, then the book, then nothing else.
+### R-12 · The reply shape (rewrite every time; never paste twice)
+Two useful things, then the disclosure, then the book, then stop.
 
-> Two things that worked for me: ask one specific question instead of "tell me about your
-> childhood" (the one that got my [dad/mom] going was "[real question]"), and give them a page to
-> write it on instead of an audience. On that second part, full disclosure, I made a book for exactly
-> this, What I Want You to Know, and it's on Amazon. But the first tip works with a legal pad.
+> Two things that helped with my dad (64, and he'd rather talk about 1890 than 1979): ask one
+> specific question instead of "tell me about your childhood," and give him a page instead of an
+> audience. Full disclosure on the second part: I made a book for exactly this, What I Want You to
+> Know, on Amazon. The first tip works fine with a legal pad.
 
-If the subreddit bans links in comments, leave the name and not the link. If it bans self-promotion
-in comments entirely, leave the two tips and nothing else.
+Where links are banned in comments, leave the name only. Where self-promotion in comments is banned,
+leave the two tips and nothing else.
 
 ---
 
+## Using the family well, and fairly
+
+- Ages change. Check them on the day of posting.
+- Denere, Richard, Dennis, and John are alive and may read Reddit. Nothing posted about them should
+  be something the author would not say to their face. First names are fine; surnames, towns, and
+  photographs are not.
+- Mary and Harold are the emotional center of R-01, R-07, and R-11. Say only what is known. "We
+  don't know much about him" is the whole point; do not decorate it.
+- If Dennis is willing, the best follow-up post in the world is his: a father who does genealogy,
+  answering one prompt from the book in his own hand, photographed, with his permission and his
+  words. That is not a script. That is him.
+
 ## What never goes in any of these
 
-- A story that did not happen to the poster.
-- A dead parent the poster does not have.
-- "This changed my life," "my mom cried," or any reaction that was not real and witnessed.
-- Sockpuppet replies, a second account asking "what's the book?", or upvotes from anyone the poster asked.
-- The attribution link where a subreddit forbids affiliate or tracked links. Use the plain Amazon link there, and give up the tracking rather than the account.
+- A story that did not happen. A reaction that was not witnessed.
+- A second account asking "what's the book?", or upvotes from anyone the author asked.
+- The attribution link where a subreddit forbids tracked or affiliate links. Use the plain Amazon
+  link there and give up the tracking rather than the account.
