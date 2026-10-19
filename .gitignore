@@ -5,3 +5,5 @@ Thumbs.db
 node_modules/
 __pycache__/
 *.pyc
+06-cover/v2/build/fonts/
+06-cover/v2/build/*.html

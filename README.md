@@ -14,7 +14,7 @@ the people who will one day read it. Built as a commercial Amazon KDP product.
 | `03-prompts/` | Stage 3–4: master prompt inventory, cuts and audit notes |
 | `04-manuscript/` | Stage 5–6: the manuscript, section by section, plus editorial QC |
 | `05-interior/` | Stage 7: KDP interior specification and layout files |
-| `06-cover/` | Stage 8–9: cover concepts, final cover, back cover copy |
+| `06-cover/` | Stage 8–9: cover concepts, launch cover, back cover copy; `06-cover/v2/` is the image-led replacement cover (prompt, placement spec, wrap guides) |
 | `07-amazon/` | Stage 10: listing copy, keywords, categories, launch and ad strategy |
 | `08-extensions/` | New book ideas, ranked, with research; future editions |
 | `09-portfolio/` | The four books after the flagship: briefs, manuscripts, builds, listings, cover prompts |

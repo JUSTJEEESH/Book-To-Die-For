@@ -1,6 +1,6 @@
 # STAGE 8 — Cover Concepts and Decision
 
-**Status:** Decided. Direction B ("Ink") is built as the paperback wrap in `build/paperback-wrap.pdf`.
+**Status:** Superseded on 2026-10-19 by the image-led v2 cover. See `06-cover/v2/COVER-V2-PROMPT-AND-PLACEMENT.md` (image prompt, exact placement, both wraps) and `06-cover/v2/build/`. Direction B below is the cover the book launched with; it stays here as the record.
 **Rebuild:** `python3 06-cover/build_cover.py` (renders all three concepts as PNG and the wrap as PDF).
 
 ## Visual direction (from the brief)
