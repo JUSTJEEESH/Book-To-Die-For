@@ -173,3 +173,14 @@ All three are free under the SIL Open Font License, from fonts.google.com. Insta
 - **Inter** (Medium 500) — descriptor and imprint. Already used inside the book.
 
 The title face changed from Cormorant Garamond to Playfair Display on purpose. Side-by-side at 160 px, Cormorant's thin strokes vanish and Playfair's stay solid. Cormorant remains the interior's part-title face; the two are cousins and sit well together.
+
+
+## 9. Kittl export note (learned the hard way)
+
+Kittl writes the artboard's pixel size into the PDF as points, so a correct 4466 x 3075 px artboard
+exports as a 62 x 43 in page and KDP shows a giant corner of the cover. The artboard is right; the
+export is not. Either export PNG/JPG at 300 dpi and place that in a PDF, or run the one-line fix:
+
+    python3.13 06-cover/v2/fix_kittl_export.py export.pdf cover-fixed.pdf
+
+Check the result's Document Properties: 14.885 x 10.25 in (paperback) or 16.399 x 11.417 in (hardcover).
